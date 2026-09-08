@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Completo – Amostragem Documental</title>
+    <title>Manual Completo – Amostragem Documental v2.3</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ============================================================ */
-        /* ESTILOS GERAIS (mesmos da versão anterior, ligeiramente expandidos) */
+        /* ESTILOS GERAIS (mantidos da v2.2) */
         /* ============================================================ */
         * { margin:0; padding:0; box-sizing:border-box; }
         :root {
@@ -265,7 +265,7 @@
         }
         tr:last-child td { border-bottom: none; }
 
-        /* TABELA DE PONTUAÇÃO (Etapa 14) com inputs */
+        /* TABELA DE PONTUAÇÃO (Etapa 14) */
         .score-table {
             width: 100%;
             border-collapse: collapse;
@@ -363,7 +363,6 @@
             details {
                 border: 1px solid #999 !important;
                 page-break-inside: avoid;
-                /* Abertura forçada via JavaScript no beforeprint, mas mantemos estilo para caso abra */
             }
             details summary { color: #000 !important; }
             details summary::after { color: #000 !important; }
@@ -435,8 +434,8 @@
         <a href="#apC">ApC</a>
         <a href="#ref">Ref</a>
         <div class="toc-buttons">
-            <button class="toc-btn" onclick="toggleDetails(true)" aria-label="Expandir todos os capítulos">Expandir</button>
-            <button class="toc-btn" onclick="toggleDetails(false)" aria-label="Recolher todos os capítulos">Recolher</button>
+            <button class="toc-btn" id="btnExpandir" aria-label="Expandir todos os capítulos">Expandir</button>
+            <button class="toc-btn" id="btnRecolher" aria-label="Recolher todos os capítulos">Recolher</button>
         </div>
     </div>
 
@@ -445,7 +444,7 @@
     <!-- ============================================================ -->
     <div class="card">
         <h2><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Manual Completo de Amostragem Documental</h2>
-        <p class="text-muted">Versão 2.2 – Método híbrido (probabilístico + qualitativo) em conformidade com o Decreto 48.897/2004 e IN APE/SAESP 3/2015.</p>
+        <p class="text-muted">Versão 2.3 – Método híbrido (probabilístico + qualitativo) em conformidade com o Decreto 48.897/2004 e IN APE/SAESP 3/2015.</p>
         <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;">
             <span class="badge"><i class="fas fa-check"></i> Estratificação Código+Ano</span>
             <span class="badge"><i class="fas fa-check"></i> Arredondamento padrão</span>
@@ -547,7 +546,7 @@
         </details>
 
         <!-- ========================================================== -->
-        <!-- CAPÍTULO 7 (COM REFERÊNCIA CRUZADA E NOTA EPISTEMOLÓGICA) -->
+        <!-- CAPÍTULO 7 -->
         <!-- ========================================================== -->
         <details id="c7" role="region" aria-labelledby="c7-label">
             <summary id="c7-label"><i class="fas fa-chart-line"></i> Capítulo 7 – Cálculo do Tamanho da Amostra</summary>
@@ -576,7 +575,7 @@
         </details>
 
         <!-- ========================================================== -->
-        <!-- CAPÍTULO 8 (COM AJUSTES: desempate, faixa 21-50, diretrizes P/Q) -->
+        <!-- CAPÍTULO 8 (COM REGRA EXPLÍCITA DE P = FLOOR) -->
         <!-- ========================================================== -->
         <details id="c8" role="region" aria-labelledby="c8-label">
             <summary id="c8-label"><i class="fas fa-sitemap"></i> Capítulo 8 – Metodologia Detalhada (Fluxo de 15 Etapas)</summary>
@@ -606,7 +605,8 @@
                     <p><strong>Critério de desempate:</strong> Em caso de empate no resto decimal, priorize o estrato de <strong>menor <em>N<sub>i</sub></em></strong>, protegendo os estratos menores.</p>
                 </div>
                 <div class="step"><h4>Etapa 8 – Dividir em P (prob.) e Q (qual.)</h4>
-                    <p><strong>Padrão:</strong> P = floor(<em>n<sub>i</sub></em> × 0,8); Q = <em>n<sub>i</sub></em> − P.</p>
+                    <p><strong>Regra padrão e obrigatória:</strong> P = <strong>floor</strong>(<em>n<sub>i</sub></em> × 0,8). O uso de qualquer outra regra (ex.: <em>ceil</em>) só é permitido mediante justificativa técnica registrada no formulário.</p>
+                    <p>Q = <em>n<sub>i</sub></em> − P.</p>
                     <p>A proporção de P pode variar conforme o perfil da série:</p>
                     <ul>
                         <li><strong>80/20 (padrão)</strong> – recomendado para a maioria das séries.</li>
@@ -616,7 +616,7 @@
                     <p>A escolha deve ser registrada com justificativa no formulário.</p>
                 </div>
                 <div class="step"><h4>Etapa 9 – Escolher método probabilístico</h4><p>Preferencial: Sistemática Fracionária (K = N<sub>i</sub>/P). Fallback: AAS se não houver ordenação estável ou risco de ciclo.</p></div>
-                <div class="step"><h4>Etapa 10 – Executar sorteio</h4><p>Utilizar seed registrada. Gerar posições pela fórmula fracionária.</p></div>
+                <div class="step"><h4>Etapa 10 – Executar sorteio</h4><p>Utilizar seed registrada. Gerar posições pela fórmula fracionária: <strong>posição<sub>j</sub> = ⌈ r + (j−1) × K ⌉</strong>, com <em>K</em> = <em>N<sub>i</sub></em> / <em>P</em>.</p></div>
                 <div class="step"><h4>Etapa 11 – Selecionar Q</h4><p>Aplicar critérios do Cap. 6. Justificar unidade por unidade.</p></div>
                 <div class="step"><h4>Etapa 12 – Tratar não localizados</h4>
                     <p>Substituir por novo sorteio (P) ou próximo equivalente (Q).</p>
@@ -648,7 +648,7 @@
         </details>
 
         <!-- ========================================================== -->
-        <!-- CAPÍTULO 9 (COM TABELA COMPLETA DOS 4 ESTRATOS) -->
+        <!-- CAPÍTULO 9 – EXEMPLO COMPLETO CORRIGIDO (v2.3) -->
         <!-- ========================================================== -->
         <details id="c9" role="region" aria-labelledby="c9-label">
             <summary id="c9-label"><i class="fas fa-check-double"></i> Capítulo 9 – Exemplo de Aplicação</summary>
@@ -656,7 +656,7 @@
                 <p><strong>Cenário:</strong> Série 03.02, 2019-2022, N = 6.500.</p>
                 <p><strong>Cálculo:</strong> n<sub>0</sub> = 384,16; n = 363 (arredondado).</p>
 
-                <h4>Alocação e ajuste (Etapas 6 e 7)</h4>
+                <h4>Alocação, ajuste (Etapa 7) e recálculo final</h4>
                 <div class="table-wrap">
                     <table>
                         <thead>
@@ -664,23 +664,25 @@
                                 <th>Ano</th>
                                 <th>Nᵢ</th>
                                 <th>nᵢ (bruto)</th>
-                                <th>nᵢ (arred.)</th>
-                                <th>P</th>
-                                <th>Q</th>
-                                <th>K (sistemática)</th>
+                                <th>nᵢ (pré-ajuste)</th>
+                                <th>nᵢ (final)</th>
+                                <th>P (final)</th>
+                                <th>Q (final)</th>
+                                <th>K (sistemática final)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>2019</td><td>1.200</td><td>67,02</td><td>67</td><td>53</td><td>14</td><td>22,64</td></tr>
-                            <tr><td>2020</td><td>1.800</td><td>100,52</td><td>101</td><td>80</td><td>21</td><td>22,50</td></tr>
-                            <tr><td>2021</td><td>2.000</td><td>111,69</td><td>112</td><td>89</td><td>23</td><td>22,47</td></tr>
-                            <tr><td>2022</td><td>1.500</td><td>83,77</td><td>84</td><td>67</td><td>17</td><td>22,39</td></tr>
+                            <tr><td>2019</td><td>1.200</td><td>67,02</td><td>67</td><td><strong>66</strong></td><td><strong>52</strong></td><td><strong>14</strong></td><td><strong>23,08</strong></td></tr>
+                            <tr><td>2020</td><td>1.800</td><td>100,52</td><td>101</td><td>101</td><td>80</td><td>21</td><td>22,50</td></tr>
+                            <tr><td>2021</td><td>2.000</td><td>111,69</td><td>112</td><td>112</td><td>89</td><td>23</td><td>22,47</td></tr>
+                            <tr><td>2022</td><td>1.500</td><td>83,77</td><td>84</td><td>84</td><td>67</td><td>17</td><td>22,39</td></tr>
                             <tr style="font-weight:600; background:#f8fafc;">
                                 <td><strong>TOTAL</strong></td>
                                 <td>6.500</td>
                                 <td>363,00</td>
                                 <td><strong>364</strong></td>
-                                <td><strong>289</strong></td>
+                                <td><strong>363</strong></td>
+                                <td><strong>288</strong></td>
                                 <td><strong>75</strong></td>
                                 <td>—</td>
                             </tr>
@@ -690,19 +692,22 @@
 
                 <div class="info-box">
                     <strong><i class="fas fa-calculator"></i> Aplicação da Etapa 7 (Ajuste de arredondamento):</strong><br>
-                    A soma provisória dos <em>nᵢ</em> arredondados é <strong>364</strong>, resultando em um <strong>excesso de 1 unidade</strong> em relação a <em>n</em> = 363.<br>
+                    A soma provisória dos <em>nᵢ</em> arredondados (pré-ajuste) é <strong>364</strong>, resultando em um <strong>excesso de 1 unidade</strong> em relação a <em>n</em> = 363.<br>
                     Os restos decimais são: 2019 (0,02), 2020 (0,52), 2021 (0,69), 2022 (0,77).<br>
                     Para corrigir, subtrai-se 1 unidade do estrato de <strong>menor resto decimal</strong>: 2019 (0,02).<br>
-                    <strong>Alocação final:</strong> 2019: 66; 2020: 101; 2021: 112; 2022: 84 → <strong>soma = 363</strong> ✅.
+                    <strong>Alocação final após Etapa 7:</strong> 2019: 66; 2020: 101; 2021: 112; 2022: 84 → <strong>soma = 363</strong> ✅.
                 </div>
 
-                <h4>Detalhamento do sorteio (Estrato 2019):</h4>
+                <h4>Detalhamento do sorteio sistemático (Estrato 2019 – pós-ajuste)</h4>
                 <div class="info-box">
-                    Para o Estrato 2019, temos <em>N<sub>i</sub></em> = 1.200, <em>n<sub>i</sub></em> = 66, P = 53, Q = 13.<br>
-                    <em>K</em> = <em>N<sub>i</sub></em> / P = 1.200 / 53 = <strong>22,64</strong>.<br>
-                    Sorteando <em>r</em> = 5,2, as primeiras posições são: 6, 28, 51, 73, 96, 118, 141, 163, 186, 208, ...
+                    <strong><i class="fas fa-dice"></i> Cálculo da sistemática fracionária:</strong><br>
+                    Para o Estrato 2019, temos <em>N<sub>i</sub></em> = 1.200 e <em>P</em> = 52.<br>
+                    <em>K</em> = <em>N<sub>i</sub></em> / <em>P</em> = 1.200 / 52 = <strong>23,0769</strong> (utilizado como 23,08).<br>
+                    Fórmula: <strong>posição<sub>j</sub> = ⌈ r + (j−1) × K ⌉</strong>, com <em>r</em> = 5,2 sorteado no intervalo [1, K].<br>
+                    <strong>Posições geradas (primeiras 10):</strong><br>
+                    6, 29, 52, 75, 98, 121, 144, 167, 190, 213, ...
                 </div>
-                <p>O exemplo completo demonstra o ajuste de arredondamento, a aplicação do piso mínimo e a sistemática fracionária.</p>
+                <p>O exemplo completo demonstra a alocação, o ajuste de arredondamento (Etapa 7), o recálculo de P/Q/K e a aplicação da sistemática fracionária com a fórmula explícita, garantindo a reprodutibilidade.</p>
             </div>
         </details>
 
@@ -756,7 +761,7 @@
         </details>
 
         <!-- ========================================================== -->
-        <!-- APÊNDICE B – LEGISLAÇÃO -->
+        <!-- APÊNDICE B -->
         <!-- ========================================================== -->
         <details id="apB" role="region" aria-labelledby="apB-label">
             <summary id="apB-label"><i class="fas fa-gavel"></i> Apêndice B – Extratos da Legislação</summary>
@@ -773,7 +778,7 @@
         </details>
 
         <!-- ========================================================== -->
-        <!-- APÊNDICE C – CONTROLE DE REVISÃO (NOVO) -->
+        <!-- APÊNDICE C – CONTROLE DE REVISÃO (ATUALIZADO) -->
         <!-- ========================================================== -->
         <details id="apC" role="region" aria-labelledby="apC-label">
             <summary id="apC-label"><i class="fas fa-history"></i> Apêndice C – Controle de Revisão</summary>
@@ -788,7 +793,8 @@
                             <tr><td>1.0</td><td>—</td><td>Vinícius A. Souza</td><td>Versão inicial do manual (estrutura em acordeão HTML).</td></tr>
                             <tr><td>2.0</td><td>09/2026</td><td>Vinícius A. Souza</td><td>Correções estatísticas: arredondamento padrão, limiar N≤20, sistemática fracionária, seed arbitrária, flexibilidade 80/20.</td></tr>
                             <tr><td>2.1</td><td>09/2026</td><td>Vinícius A. Souza</td><td>Nota epistemológica sobre Cochran; regra dos 10% para substituições; matriz de pontuação para nᵢ<5; diretrizes para P/Q; justificativa para N≤20.</td></tr>
-                            <tr><td><strong>2.2</strong></td><td><strong>09/2026</strong></td><td><strong>Vinícius A. Souza</strong></td><td><strong>Exemplo completo com tabela dos 4 estratos; critério de desempate (menor Nᵢ); alerta para faixa 21-50; referência cruzada no Cap. 7; acessibilidade (aria-labelledby, inputs); evento beforeprint; Apêndice C.</strong></td></tr>
+                            <tr><td>2.2</td><td>09/2026</td><td>Vinícius A. Souza</td><td>Exemplo completo com tabela dos 4 estratos; critério de desempate (menor Nᵢ); alerta para faixa 21-50; referência cruzada no Cap. 7; acessibilidade (aria-labelledby, inputs); evento beforeprint; Apêndice C.</td></tr>
+                            <tr><td><strong>2.3</strong></td><td><strong>09/2026</strong></td><td><strong>Vinícius A. Souza</strong></td><td><strong>Correção crítica no Cap. 9: recálculo do Estrato 2019 para nᵢ=66, P=52, Q=14, K=23,08; novas posições reproduzíveis (6,29,52,75...); regra explícita de P=floor na Etapa 8; migração de onclick para addEventListener.</strong></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -825,21 +831,21 @@
                 <i class="fas fa-check-circle" style="color: #1976d2;"></i>
                 <strong>Manual validado:</strong> Método alinhado com a IN APE/SAESP 3/2015 e com as boas práticas de amostragem arquivística.
                 <span style="display:block; font-size:0.85rem; margin-top:4px;">
-                    Versão 2.2 – Exemplo completo, critério de desempate, faixa 21–50, referência cruzada, acessibilidade aprimorada, beforeprint e Apêndice C.
+                    Versão 2.3 – Correção crítica da inconsistência numérica no exemplo (2019: n=66, P=52, K=23,08); posições reproduzíveis; regra de P=floor explicitada.
                 </span>
             </p>
         </div>
     </div>
 
     <footer>
-        <p>Baseado no Decreto 48.897/2004 e IN APE/SAESP 3/2015 – Versão 2.2.</p>
+        <p>Baseado no Decreto 48.897/2004 e IN APE/SAESP 3/2015 – Versão 2.3.</p>
         <p style="font-size: 0.8rem; margin-top: 4px;">Clique em "Expandir" no sumário para abrir todos os capítulos.</p>
     </footer>
 </div>
 
 <script>
     // ============================================================
-    // EXPANDIR / RECOLHER TODOS OS DETAILS
+    // EXPANDIR / RECOLHER TODOS OS DETAILS (via Event Listeners)
     // ============================================================
     function toggleDetails(open) {
         const details = document.querySelectorAll('details');
@@ -847,6 +853,14 @@
             detail.open = open;
         });
     }
+
+    document.getElementById('btnExpandir').addEventListener('click', function() {
+        toggleDetails(true);
+    });
+
+    document.getElementById('btnRecolher').addEventListener('click', function() {
+        toggleDetails(false);
+    });
 
     // ============================================================
     // ROLAGEM SUAVE PARA ÂNCORAS (toc-sticky)
@@ -872,7 +886,8 @@
         toggleDetails(true);
     });
 
-    console.log('Manual completo v2.2 carregado. Use "Expandir/Recolher" no sumário.');
+    console.log('Manual completo v2.3 carregado. Inconsistência numérica corrigida.');
 </script>
+
 </body>
 </html>

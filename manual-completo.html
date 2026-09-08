@@ -31,18 +31,20 @@
             padding: 0 20px 40px;
         }
         .container { max-width: 1200px; margin: 0 auto; }
+
+        /* === NAV (visível apenas na tela) === */
         nav {
-            padding: 24px 0 16px;
+            padding: 20px 0 12px;
             border-bottom: 1px solid var(--border);
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
         }
         .logo {
             font-weight: 700;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--primary-dark);
             letter-spacing: -0.5px;
         }
@@ -53,12 +55,12 @@
             flex-wrap: wrap;
         }
         .nav-links a {
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 40px;
             text-decoration: none;
             color: var(--text-secondary);
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.2s;
         }
         .nav-links a:hover {
@@ -70,12 +72,73 @@
             background: var(--primary);
             color: white;
         }
+
+        /* === SUMÁRIO FLUTUANTE (sticky TOC) === */
+        .toc-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            padding: 10px 16px;
+            margin: 8px 0 16px 0;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 12px;
+            font-size: 0.85rem;
+        }
+        .toc-sticky .toc-label {
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-right: 4px;
+        }
+        .toc-sticky a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 2px 8px;
+            border-radius: 20px;
+            transition: all 0.2s;
+            font-size: 0.8rem;
+        }
+        .toc-sticky a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .toc-sticky .toc-buttons {
+            display: flex;
+            gap: 6px;
+            margin-left: auto;
+        }
+        .toc-sticky .toc-btn {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font);
+        }
+        .toc-sticky .toc-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* === CARDS === */
         .card {
             background: var(--surface);
             border-radius: var(--radius);
             padding: 28px 32px;
             box-shadow: var(--shadow);
-            margin: 24px 0;
+            margin: 20px 0;
             border: 1px solid var(--border);
         }
         .card h2 {
@@ -105,12 +168,19 @@
             font-weight: 600;
             display: inline-block;
         }
+        .badge-dark {
+            background: var(--text-secondary);
+        }
+
+        /* === ACORDEÃO (DETAILS) === */
         details {
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 0 20px;
             margin: 12px 0;
             background: var(--surface);
+            transition: all 0.2s;
+            scroll-margin-top: 80px; /* para o TOC sticky */
         }
         details summary {
             padding: 16px 0;
@@ -141,6 +211,8 @@
         details .content p { margin: 8px 0; }
         details .content ul, details .content ol { margin-left: 24px; margin-top: 8px; }
         details .content li { margin: 4px 0; }
+
+        /* === ELEMENTOS AUXILIARES === */
         .formula-box {
             background: var(--bg);
             padding: 12px 20px;
@@ -149,6 +221,16 @@
             font-family: 'Courier New', monospace;
             font-size: 1.05rem;
             border-left: 4px solid var(--primary-light);
+        }
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary);
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin: 12px 0;
+        }
+        .info-box strong {
+            color: var(--primary-dark);
         }
         .step {
             margin: 16px 0;
@@ -199,12 +281,87 @@
             font-family: var(--font);
         }
         .btn:hover { background: var(--primary-dark); }
+        .no-print { display: block; }
+
+        /* === SCORE TABLE (Etapa 14) === */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin: 8px 0;
+        }
+        .score-table th {
+            background: var(--primary-light);
+            color: white;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+        }
+        .score-table td {
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* === RESPONSIVE === */
         @media (max-width: 640px) {
             .card { padding: 20px; }
-            .nav-links a { padding: 6px 12px; font-size: 0.8rem; }
+            .nav-links a { padding: 6px 10px; font-size: 0.75rem; }
             details { padding: 0 12px; }
             details summary { font-size: 1rem; }
+            .toc-sticky { font-size: 0.75rem; padding: 8px 12px; }
+            .toc-sticky a { font-size: 0.7rem; padding: 2px 6px; }
+            .toc-sticky .toc-btn { font-size: 0.65rem; padding: 2px 10px; }
+            .toc-sticky .toc-label { display: none; }
         }
+
+        /* ============================================================ */
+        /* ESTILOS DE IMPRESSÃO (@media print) */
+        /* ============================================================ */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0.2in !important;
+                font-size: 11pt;
+                color: #000;
+            }
+            .container { max-width: 100% !important; }
+            .no-print { display: none !important; }
+            nav, .toc-sticky, .toc-buttons, .btn, .nav-links {
+                display: none !important;
+            }
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #ccc !important;
+                padding: 16px !important;
+                border-radius: 4px !important;
+                background: white !important;
+                page-break-inside: avoid;
+            }
+            .card h2 { color: #000 !important; }
+            .badge { background: #333 !important; color: white !important; }
+            details {
+                border: 1px solid #999 !important;
+                page-break-inside: avoid;
+            }
+            details summary { color: #000 !important; }
+            details summary::after { color: #000 !important; }
+            .formula-box {
+                background: #f4f4f4 !important;
+                border-left: 3px solid #000 !important;
+            }
+            .info-box {
+                background: #eef !important;
+                border-left: 3px solid #000 !important;
+            }
+            .step { border-left-color: #000 !important; }
+            .step h4 { color: #000 !important; }
+            th { background: #ddd !important; color: #000 !important; border-color: #000 !important; }
+            td { border-color: #000 !important; }
+            .score-table th { background: #333 !important; color: white !important; }
+            .score-table td { border-color: #000 !important; }
+            .text-muted { color: #333 !important; }
+            .print-footer { color: #333 !important; border-top: 1px solid #999 !important; }
+        }
+
         footer {
             margin-top: 48px;
             padding-top: 24px;
@@ -217,7 +374,9 @@
 </head>
 <body>
 <div class="container">
-    <nav>
+
+    <!-- NAV (visível apenas na tela) -->
+    <nav class="no-print">
         <div class="logo"><i class="fas fa-archive"></i> AmostragemDoc</div>
         <div class="nav-links">
             <a href="index.html"><i class="fas fa-home"></i> Início</a>
@@ -225,10 +384,34 @@
             <a href="manual-completo.html" class="active"><i class="fas fa-file-alt"></i> Manual Completo</a>
             <a href="ferramenta.html"><i class="fas fa-calculator"></i> Calculadora</a>
             <a href="formulario.html"><i class="fas fa-file-pdf"></i> Formulário</a>
-
         </div>
     </nav>
 
+    <!-- SUMÁRIO FLUTUANTE (sticky TOC) -->
+    <div class="toc-sticky no-print" role="navigation" aria-label="Sumário do manual">
+        <span class="toc-label"><i class="fas fa-list"></i> Capítulos:</span>
+        <a href="#c1">1</a>
+        <a href="#c2">2</a>
+        <a href="#c3">3</a>
+        <a href="#c4">4</a>
+        <a href="#c5">5</a>
+        <a href="#c6">6</a>
+        <a href="#c7">7</a>
+        <a href="#c8">8</a>
+        <a href="#c9">9</a>
+        <a href="#c10">10</a>
+        <a href="#apA">ApA</a>
+        <a href="#apB">ApB</a>
+        <a href="#ref">Ref</a>
+        <div class="toc-buttons">
+            <button class="toc-btn" onclick="toggleDetails(true)" aria-label="Expandir todos os capítulos">Expandir</button>
+            <button class="toc-btn" onclick="toggleDetails(false)" aria-label="Recolher todos os capítulos">Recolher</button>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CONTEÚDO PRINCIPAL -->
+    <!-- ============================================================ -->
     <div class="card">
         <h2><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Manual Completo de Amostragem Documental</h2>
         <p class="text-muted">Versão integral – Método híbrido (probabilístico + qualitativo) em conformidade com o Decreto 48.897/2004 e IN APE/SAESP 3/2015.</p>
@@ -241,18 +424,25 @@
         </div>
         <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
 
-        <!-- Capítulos em acordeão -->
-        <details open>
-            <summary><i class="fas fa-file-signature"></i> Capítulo 1 – Apresentação e Fundamentação</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 1 -->
+        <!-- ========================================================== -->
+        <details id="c1">
+            <summary aria-label="Capítulo 1 – Apresentação e Fundamentação"><i class="fas fa-file-signature"></i> Capítulo 1 – Apresentação e Fundamentação</summary>
             <div class="content">
                 <p>Este manual estabelece diretrizes técnicas para amostragem arquivística em conjuntos documentais elimináveis, com base no art. 29 do Decreto 48.897/2004 e na IN APE/SAESP 3/2015.</p>
-                <p>A fórmula de Cochran é empregada como <strong>dispositivo de dimensionamento conservador</strong>, e não como estimador inferencial. A amostra tem finalidade arquivística (preservação da memória), não estatística.</p>
+                <div class="info-box">
+                    <strong><i class="fas fa-info-circle"></i> Nota epistemológica:</strong> A fórmula de Cochran é empregada como <strong>dispositivo de dimensionamento conservador</strong>, e não como estimador inferencial. A amostra tem finalidade arquivística (preservação da memória), não estatística. Esta ressalva é retomada no Capítulo 7.
+                </div>
                 <p><strong>Finalidades:</strong> testemunhal (documento típico), probatória (auditoria), memória (excepcionalidades) e conformidade (exigência legal).</p>
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-glossary"></i> Capítulo 2 – Termos e Definições</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 2 -->
+        <!-- ========================================================== -->
+        <details id="c2">
+            <summary aria-label="Capítulo 2 – Termos e Definições"><i class="fas fa-glossary"></i> Capítulo 2 – Termos e Definições</summary>
             <div class="content">
                 <p><strong>População (N):</strong> Total de unidades da série.</p>
                 <p><strong>Estrato:</strong> Subdivisão por Código de Classificação + Ano de Produção.</p>
@@ -263,8 +453,11 @@
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-legal"></i> Capítulo 3 – Aplicabilidade</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 3 -->
+        <!-- ========================================================== -->
+        <details id="c3">
+            <summary aria-label="Capítulo 3 – Aplicabilidade"><i class="fas fa-legal"></i> Capítulo 3 – Aplicabilidade</summary>
             <div class="content">
                 <p>Aplica-se a documentos físicos (papel) com prazos de guarda cumpridos e decisão de eliminação formalizada.</p>
                 <p><strong>Não se aplica diretamente</strong> a nato-digitais (necessita adaptações, mas fundamentos são válidos).</p>
@@ -272,8 +465,11 @@
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-layer-group"></i> Capítulo 4 – Amostragem: Conceitos e Tipos</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 4 -->
+        <!-- ========================================================== -->
+        <details id="c4">
+            <summary aria-label="Capítulo 4 – Amostragem: Conceitos e Tipos"><i class="fas fa-layer-group"></i> Capítulo 4 – Amostragem: Conceitos e Tipos</summary>
             <div class="content">
                 <p><strong>Probabilística:</strong> Probabilidade de seleção conhecida e > 0. Permite auditabilidade matemática.</p>
                 <p><strong>Não probabilística:</strong> Seleção por critérios de valor. Não permite inferência, mas é essencial para preservar excepcionalidades.</p>
@@ -281,8 +477,11 @@
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-dice"></i> Capítulo 5 – Técnicas Probabilísticas</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 5 -->
+        <!-- ========================================================== -->
+        <details id="c5">
+            <summary aria-label="Capítulo 5 – Técnicas Probabilísticas"><i class="fas fa-dice"></i> Capítulo 5 – Técnicas Probabilísticas</summary>
             <div class="content">
                 <h4>5.1 Amostragem Aleatória Simples (AAS)</h4>
                 <p>Numeração de 1 a <em>N<sub>i</sub></em> e sorteio de <em>P</em> números únicos com seed registrada. Recomendada quando não há ordenação estável.</p>
@@ -297,8 +496,11 @@
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-calculator"></i> Capítulo 6 – Técnicas Não Probabilísticas (Qualitativa)</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 6 -->
+        <!-- ========================================================== -->
+        <details id="c6">
+            <summary aria-label="Capítulo 6 – Técnicas Não Probabilísticas (Qualitativa)"><i class="fas fa-calculator"></i> Capítulo 6 – Técnicas Não Probabilísticas (Qualitativa)</summary>
             <div class="content">
                 <p>Critérios obrigatórios (IN APE/SAESP, art. 4º):</p>
                 <ul>
@@ -313,9 +515,17 @@
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-chart-line"></i> Capítulo 7 – Cálculo do Tamanho da Amostra</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 7 (COM NOTA EPISTEMOLÓGICA DESTACADA) -->
+        <!-- ========================================================== -->
+        <details id="c7">
+            <summary aria-label="Capítulo 7 – Cálculo do Tamanho da Amostra"><i class="fas fa-chart-line"></i> Capítulo 7 – Cálculo do Tamanho da Amostra</summary>
             <div class="content">
+                <div class="info-box">
+                    <strong><i class="fas fa-lightbulb"></i> Importante – Natureza do cálculo:</strong>
+                    A fórmula de Cochran é utilizada neste manual como um <strong>dispositivo de dimensionamento conservador</strong> para definir um número mínimo de unidades a preservar, e <strong>não</strong> como um estimador de proporções populacionais. Os parâmetros <em>p</em> = 0,5 e <em>e</em> = 0,05 não descrevem propriedades da população documental; são valores arbitrários que produzem um tamanho de amostra prudente para fins arquivísticos. <strong>Não se está estimando a proporção de documentos "típicos" ou "excepcionais".</strong>
+                </div>
+
                 <p><strong>Parâmetros fixos (conservadores):</strong></p>
                 <ul>
                     <li>Z = 1,96 (95% confiança)</li>
@@ -333,57 +543,123 @@
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-sitemap"></i> Capítulo 8 – Metodologia Detalhada (Fluxo de 15 Etapas)</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 8 (COM AJUSTES NA ETAPA 7 E DIRETRIZES P/Q) -->
+        <!-- ========================================================== -->
+        <details id="c8">
+            <summary aria-label="Capítulo 8 – Metodologia Detalhada (Fluxo de 15 Etapas)"><i class="fas fa-sitemap"></i> Capítulo 8 – Metodologia Detalhada (Fluxo de 15 Etapas)</summary>
             <div class="content">
                 <div class="step"><h4>Etapa 1 – Delimitar a série</h4><p>Identificar a série com base na Tabela de Temporalidade.</p></div>
                 <div class="step"><h4>Etapa 2 – Definir a unidade documental</h4><p>Ex.: processo administrativo, prontuário, dossiê. Fixa para toda a série.</p></div>
                 <div class="step"><h4>Etapa 3 – Estratificar</h4><p><strong>Obrigatório:</strong> Código de Classificação + Ano de Produção.</p></div>
-                <div class="step"><h4>Etapa 4 – Levantar N<sub>i</sub></h4><p>Contagem física ou por inventário. Estratos com <strong>N<sub>i</sub> ≤ 20</strong> são preservados integralmente (censo) e excluídos do cálculo estatístico.</p></div>
+                <div class="step"><h4>Etapa 4 – Levantar N<sub>i</sub></h4>
+                    <p>Contagem física ou por inventário. Estratos com <strong>N<sub>i</sub> ≤ 20</strong> são preservados integralmente (censo) e excluídos do cálculo estatístico.</p>
+                    <div class="info-box">
+                        <strong><i class="fas fa-info-circle"></i> Justificativa do limiar N≤20:</strong> Abaixo de 20 unidades, a variabilidade amostral é tão alta que a probabilidade de uma amostra aleatória não cobrir as variações significativas da série é grande. Opta-se pela preservação integral como medida de segurança arquivística.
+                    </div>
+                </div>
                 <div class="step"><h4>Etapa 5 – Calcular n (Cochran)</h4><p>Aplicar fórmulas do Cap. 7. Arredondar para o inteiro mais próximo.</p></div>
                 <div class="step"><h4>Etapa 6 – Alocar n<sub>i</sub> proporcionalmente</h4><p><em>n<sub>i</sub></em> = <em>n</em> × <em>N<sub>i</sub></em> / <em>N</em>. Arredondamento: inteiro mais próximo. Piso: se <em>n<sub>i</sub></em> < 1, atribuir 1.</p></div>
-                <div class="step"><h4>Etapa 7 – Ajuste da soma para n</h4><p>Some os <em>n<sub>i</sub></em> arredondados. Se soma > n, subtraia dos menores restos; se soma < n, adicione aos maiores restos.</p></div>
-                <div class="step"><h4>Etapa 8 – Dividir em P (prob.) e Q (qual.)</h4><p>Padrão: P = floor(<em>n<sub>i</sub></em> × 0,8); Q = <em>n<sub>i</sub></em> − P. Proporção pode variar entre 70% e 90% com justificativa.</p></div>
+                <div class="step"><h4>Etapa 7 – Ajuste da soma para n</h4>
+                    <p>Some os <em>n<sub>i</sub></em> arredondados.</p>
+                    <div class="info-box">
+                        <strong><i class="fas fa-exclamation-triangle"></i> Atenção:</strong> A soma dos <em>n<sub>i</sub></em> arredondados <strong>SEMPRE divergirá</strong> de <em>n</em>. O ajuste descrito a seguir é uma <strong>etapa obrigatória</strong> do método, e não uma correção excepcional.
+                    </div>
+                    <ul>
+                        <li><strong>Se soma > n:</strong> subtraia 1 unidade do(s) estrato(s) de <strong>menor resto decimal</strong>.</li>
+                        <li><strong>Se soma < n:</strong> adicione 1 unidade ao(s) estrato(s) de <strong>maior resto decimal</strong>.</li>
+                    </ul>
+                </div>
+                <div class="step"><h4>Etapa 8 – Dividir em P (prob.) e Q (qual.)</h4>
+                    <p><strong>Padrão:</strong> P = floor(<em>n<sub>i</sub></em> × 0,8); Q = <em>n<sub>i</sub></em> − P.</p>
+                    <p>A proporção de P pode variar conforme o perfil da série:</p>
+                    <ul>
+                        <li><strong>80/20 (padrão)</strong> – recomendado para a maioria das séries.</li>
+                        <li><strong>70/30</strong> – séries com alta heterogeneidade qualitativa e densidade de casos excepcionais.</li>
+                        <li><strong>90/10</strong> – séries extremamente homogêneas (ex.: formulários padronizados), onde o valor qualitativo adicional é pequeno.</li>
+                    </ul>
+                    <p>A escolha deve ser registrada com justificativa no formulário.</p>
+                </div>
                 <div class="step"><h4>Etapa 9 – Escolher método probabilístico</h4><p>Preferencial: Sistemática Fracionária (K = N<sub>i</sub>/P). Fallback: AAS se não houver ordenação estável ou risco de ciclo.</p></div>
                 <div class="step"><h4>Etapa 10 – Executar sorteio</h4><p>Utilizar seed registrada. Gerar posições pela fórmula fracionária.</p></div>
                 <div class="step"><h4>Etapa 11 – Selecionar Q</h4><p>Aplicar critérios do Cap. 6. Justificar unidade por unidade.</p></div>
-                <div class="step"><h4>Etapa 12 – Tratar não localizados</h4><p>Substituir por novo sorteio (P) ou próximo equivalente (Q).</p></div>
+                <div class="step"><h4>Etapa 12 – Tratar não localizados</h4>
+                    <p>Substituir por novo sorteio (P) ou próximo equivalente (Q).</p>
+                    <div class="info-box">
+                        <strong><i class="fas fa-info-circle"></i> Regra dos 10%:</strong> Se o índice de não localização ultrapassar <strong>10%</strong> do total de unidades sorteadas, o inventário físico (<em>N<sub>i</sub></em>) deve ser reavaliado antes de prosseguir com a amostragem.
+                    </div>
+                </div>
                 <div class="step"><h4>Etapa 13 – Tratar agregados (se inviável listagem individual)</h4><p>Sortear caixas/pastas, registrando o nível de agregação.</p></div>
-                <div class="step"><h4>Etapa 14 – Avaliar estratos com n<sub>i</sub> < 5</h4><p>Avaliar preservação integral com base em 4 fatores (unicidade, similaridade, relevância, orientação da CADA).</p></div>
+                <div class="step"><h4>Etapa 14 – Avaliar estratos com n<sub>i</sub> < 5</h4>
+                    <p>Para estratos com menos de 5 unidades alocadas, avalie a preservação integral utilizando a seguinte matriz de pontuação:</p>
+                    <table class="score-table">
+                        <thead>
+                            <tr><th>Fator</th><th>Descrição</th><th>Pontuação (0 a 5)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Unicidade</strong></td><td>O estrato contém informações que não se repetem em outros estratos?</td><td style="text-align:center;">____</td></tr>
+                            <tr><td><strong>Similaridade</strong></td><td>Existem documentos similares em outros estratos que possam representar este período?</td><td style="text-align:center;">____</td></tr>
+                            <tr><td><strong>Relevância histórica</strong></td><td>O período abrangido pelo estrato tem importância histórica ou institucional reconhecida?</td><td style="text-align:center;">____</td></tr>
+                            <tr><td><strong>Orientação da CADA</strong></td><td>A Comissão de Avaliação recomenda a preservação por razões específicas?</td><td style="text-align:center;">____</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Regra de decisão:</strong> Se a soma das pontuações for <strong>≥ 12</strong>, adote a preservação integral do estrato. Caso contrário, mantenha a amostra alocada.</p>
+                </div>
                 <div class="step"><h4>Etapa 15 – Registrar e encerrar</h4><p>Preencher o formulário (Apêndice A) com todos os parâmetros, seed, listas e justificativas.</p></div>
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-check-double"></i> Capítulo 9 – Exemplo de Aplicação</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 9 (COM NOTA EXPLICATIVA SOBRE K=1200/53) -->
+        <!-- ========================================================== -->
+        <details id="c9">
+            <summary aria-label="Capítulo 9 – Exemplo de Aplicação"><i class="fas fa-check-double"></i> Capítulo 9 – Exemplo de Aplicação</summary>
             <div class="content">
                 <p><strong>Cenário:</strong> Série 03.02, 2019-2022, N = 6.500.</p>
                 <p><strong>Cálculo:</strong> n<sub>0</sub> = 384,16; n = 363 (arredondado).</p>
                 <p><strong>Alocação:</strong> 2019: 66; 2020: 101; 2021: 112; 2022: 84 (total 363).</p>
                 <p><strong>P/Q:</strong> 291 / 72 (80% / 20%).</p>
-                <p><strong>Sorteio sistemático:</strong> K = 1200/53 = 22,64; r = 5,2; posições: 6, 28, 51... </p>
+                <p><strong>Sorteio sistemático (Estrato 2019):</strong></p>
+                <div class="info-box">
+                    <strong><i class="fas fa-calculator"></i> Detalhamento do cálculo:</strong>
+                    Para o Estrato 2019, temos <em>N<sub>i</sub></em> = 1.200, <em>n<sub>i</sub></em> = 66, P = 53, Q = 13.<br>
+                    <em>K</em> = <em>N<sub>i</sub></em> / P = 1.200 / 53 = <strong>22,64</strong>.<br>
+                    Sorteando <em>r</em> = 5,2, as primeiras posições são: 6, 28, 51, 73, 96, 118, 141, 163, 186, 208, ...
+                </div>
                 <p>O exemplo completo demonstra o ajuste de arredondamento e a aplicação do piso mínimo.</p>
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-microchip"></i> Capítulo 10 – Recomendações Técnicas Avançadas</summary>
+        <!-- ========================================================== -->
+        <!-- CAPÍTULO 10 (COM SEED CORRIGIDA) -->
+        <!-- ========================================================== -->
+        <details id="c10">
+            <summary aria-label="Capítulo 10 – Recomendações Técnicas Avançadas"><i class="fas fa-microchip"></i> Capítulo 10 – Recomendações Técnicas Avançadas</summary>
             <div class="content">
                 <h4>10.1 Seed e Reprodutibilidade</h4>
-                <p>A semente deve ser um número <strong>arbitrário</strong> (ex.: timestamp da geração) e registrada <strong>após</strong> o sorteio. Recomenda-se evitar seeds óbvias como 0, 1 ou 12345.</p>
+                <div class="info-box">
+                    <strong><i class="fas fa-pencil-alt"></i> Procedimento correto:</strong>
+                    A semente (seed) é um valor numérico que fixa o estado inicial do gerador pseudoaleatório.<br>
+                    <strong>Ela deve ser definida ANTES do sorteio</strong> (ex.: utilizando o timestamp do instante da geração, ou um número arbitrário registrado previamente).<br>
+                    O registro da seed no formulário é feito <strong>imediatamente após a geração</strong>, sem reexecução do sorteio, para garantir a rastreabilidade e evitar qualquer suspeita de manipulação.<br>
+                    <strong>Evite seeds óbvias</strong> como 0, 1, 12345, ou o ano corrente.
+                </div>
                 <h4>10.2 Ordenação estável</h4>
                 <p>Definir e registrar o critério de ordenação (cronológico, numérico) antes da numeração.</p>
                 <h4>10.3 Tratamento de duplicidades</h4>
                 <p>Na AAS, descartar números repetidos e sortear novos.</p>
                 <h4>10.4 Estratos censitários</h4>
-                <p>N<sub>i</sub> ≤ 20 → preservação integral.</p>
+                <p>N<sub>i</sub> ≤ 20 → preservação integral (ver justificativa na Etapa 4).</p>
                 <h4>10.5 Modalidade autônoma por código</h4>
                 <p>Para acervos com <strong>até 5 códigos</strong> ou sob contencioso, pode-se calcular n para cada código separadamente. A soma final será maior, mas oferece defensabilidade jurídica.</p>
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-clipboard-list"></i> Apêndice A – Formulário de Registro</summary>
+        <!-- ========================================================== -->
+        <!-- APÊNDICE A -->
+        <!-- ========================================================== -->
+        <details id="apA">
+            <summary aria-label="Apêndice A – Formulário de Registro"><i class="fas fa-clipboard-list"></i> Apêndice A – Formulário de Registro</summary>
             <div class="content">
                 <p>Campos obrigatórios:</p>
                 <ul>
@@ -403,8 +679,11 @@
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-gavel"></i> Apêndice B – Extratos da Legislação</summary>
+        <!-- ========================================================== -->
+        <!-- APÊNDICE B – LEGISLAÇÃO -->
+        <!-- ========================================================== -->
+        <details id="apB">
+            <summary aria-label="Apêndice B – Extratos da Legislação"><i class="fas fa-gavel"></i> Apêndice B – Extratos da Legislação</summary>
             <div class="content">
                 <h4>Decreto Nº 48.897, de 27 de agosto de 2004</h4>
                 <p><strong>Artigo 29</strong> – Dos documentos destinados à eliminação serão selecionadas amostragens para guarda permanente.</p>
@@ -417,8 +696,11 @@
             </div>
         </details>
 
-        <details>
-            <summary><i class="fas fa-book-open"></i> Referências</summary>
+        <!-- ========================================================== -->
+        <!-- REFERÊNCIAS -->
+        <!-- ========================================================== -->
+        <details id="ref">
+            <summary aria-label="Referências"><i class="fas fa-book-open"></i> Referências</summary>
             <div class="content">
                 <ul>
                     <li>ARQUIVO PÚBLICO DO ESTADO DE SÃO PAULO. <em>Como avaliar documentos de arquivo</em>. São Paulo: Arquivo do Estado; Imprensa Oficial, 2004.</li>
@@ -435,14 +717,60 @@
             </div>
         </details>
 
+        <!-- ========================================================== -->
+        <!-- RODAPÉ DE VALIDAÇÃO -->
+        <!-- ========================================================== -->
         <div style="margin-top: 24px; padding: 16px; background: #e3f2fd; border-radius: 12px; border: 1px solid #90caf9;">
-            <p style="margin: 0; color: #0d47a1;"><i class="fas fa-check-circle" style="color: #1976d2;"></i> <strong>Manual validado:</strong> Método alinhado com a IN APE/SAESP 3/2015 e com as boas práticas de amostragem arquivística.</p>
+            <p style="margin: 0; color: #0d47a1;">
+                <i class="fas fa-check-circle" style="color: #1976d2;"></i>
+                <strong>Manual validado:</strong> Método alinhado com a IN APE/SAESP 3/2015 e com as boas práticas de amostragem arquivística.
+                <span style="display:block; font-size:0.85rem; margin-top:4px;">
+                    Versão 2.1 – Inclui nota epistemológica sobre Cochran, diretrizes P/Q, matriz de pontuação para n<sub>i</sub> < 5, regra dos 10% e justificativa para N≤20.
+                </span>
+            </p>
         </div>
     </div>
 
     <footer>
-        <p>Baseado no Decreto 48.897/2004 e IN APE/SAESP 3/2015 – Versão integral.</p>
+        <p>Baseado no Decreto 48.897/2004 e IN APE/SAESP 3/2015 – Versão integral revisada.</p>
+        <p style="font-size: 0.8rem; margin-top: 4px;">Clique em "Expandir" no sumário para abrir todos os capítulos.</p>
     </footer>
 </div>
+
+<script>
+    // ============================================================
+    // EXPANDIR / RECOLHER TODOS OS DETAILS
+    // ============================================================
+    function toggleDetails(open) {
+        const details = document.querySelectorAll('details');
+        details.forEach(detail => {
+            detail.open = open;
+        });
+    }
+
+    // ============================================================
+    // ROLAGEM SUAVE PARA ÂNCORAS (toc-sticky)
+    // ============================================================
+    document.querySelectorAll('.toc-sticky a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Abre o details se estiver fechado
+                if (!target.open) {
+                    target.open = true;
+                }
+            }
+        });
+    });
+
+    // ============================================================
+    // ACESSIBILIDADE: Foco no details ao clicar no sumário
+    // ============================================================
+    console.log('Manual completo carregado. Use os botões "Expandir" e "Recolher" no sumário.');
+</script>
+
 </body>
 </html>

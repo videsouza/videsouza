@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo – Amostragem Documental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --bg: #f6f8fa;
+            --surface: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-light: #60a5fa;
+            --primary-dark: #1e3a8a;
+            --shadow: 0 8px 30px rgba(0,0,0,0.05);
+            --radius: 16px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0 20px 40px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        nav {
+            padding: 24px 0 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+        .logo i { color: var(--primary-light); margin-right: 8px; }
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            padding: 8px 16px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            background: var(--surface);
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+        .nav-links a.active {
+            background: var(--primary);
+            color: white;
+        }
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            box-shadow: var(--shadow);
+            margin: 24px 0;
+            border: 1px solid var(--border);
+        }
+        .card h2 {
+            margin-top: 0;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 24px 0 12px;
+        }
+        .card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 16px 0 6px;
+        }
+        .badge {
+            background: var(--primary-light);
+            color: white;
+            border-radius: 40px;
+            padding: 2px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        details {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0 20px;
+            margin: 12px 0;
+            background: var(--surface);
+        }
+        details summary {
+            padding: 16px 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-dark);
+            list-style: none;
+        }
+        details summary::-webkit-details-marker { display: none; }
+        details summary::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 600;
+            margin-left: auto;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: transform 0.2s;
+        }
+        details[open] summary::after { transform: rotate(180deg); }
+        details .content {
+            padding-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        details .content p { margin: 8px 0; }
+        details .content ul, details .content ol { margin-left: 24px; margin-top: 8px; }
+        details .content li { margin: 4px 0; }
+        .formula-box {
+            background: var(--bg);
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.05rem;
+            border-left: 4px solid var(--primary-light);
+        }
+        .step {
+            margin: 16px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-light);
+        }
+        .step h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 0 0 4px;
+        }
+        .step p { margin: 4px 0; }
+        .text-muted { color: var(--text-secondary); }
+        .table-wrap { overflow-x: auto; margin: 16px 0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        th {
+            background: var(--bg);
+            text-align: left;
+            padding: 10px 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border);
+        }
+        td {
+            padding: 8px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:last-child td { border-bottom: none; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            font-family: var(--font);
+        }
+        .btn:hover { background: var(--primary-dark); }
+        @media (max-width: 640px) {
+            .card { padding: 20px; }
+            .nav-links a { padding: 6px 12px; font-size: 0.8rem; }
+            details { padding: 0 12px; }
+            details summary { font-size: 1rem; }
+        }
+        footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="logo"><i class="fas fa-archive"></i> AmostragemDoc</div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Início</a>
+            <a href="manual-simplificado.html"><i class="fas fa-book"></i> Manual Simpl.</a>
+            <a href="manual-completo.html" class="active"><i class="fas fa-file-alt"></i> Manual Completo</a>
+            <a href="ferramenta.html"><i class="fas fa-calculator"></i> Calculadora</a>
+        </div>
+    </nav>
+
+    <div class="card">
+        <h2><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Manual Completo de Amostragem Documental</h2>
+        <p class="text-muted">Versão integral – Método híbrido (probabilístico + qualitativo) em conformidade com o Decreto 48.897/2004 e IN APE/SAESP 3/2015.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;">
+            <span class="badge"><i class="fas fa-check"></i> Estratificação Código+Ano</span>
+            <span class="badge"><i class="fas fa-check"></i> Arredondamento padrão</span>
+            <span class="badge"><i class="fas fa-check"></i> Seed obrigatória</span>
+            <span class="badge"><i class="fas fa-check"></i> Sistemática fracionária</span>
+            <span class="badge"><i class="fas fa-check"></i> Flexibilidade 80/20</span>
+        </div>
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+
+        <!-- Capítulos em acordeão -->
+        <details open>
+            <summary><i class="fas fa-file-signature"></i> Capítulo 1 – Apresentação e Fundamentação</summary>
+            <div class="content">
+                <p>Este manual estabelece diretrizes técnicas para amostragem arquivística em conjuntos documentais elimináveis, com base no art. 29 do Decreto 48.897/2004 e na IN APE/SAESP 3/2015.</p>
+                <p>A fórmula de Cochran é empregada como <strong>dispositivo de dimensionamento conservador</strong>, e não como estimador inferencial. A amostra tem finalidade arquivística (preservação da memória), não estatística.</p>
+                <p><strong>Finalidades:</strong> testemunhal (documento típico), probatória (auditoria), memória (excepcionalidades) e conformidade (exigência legal).</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-glossary"></i> Capítulo 2 – Termos e Definições</summary>
+            <div class="content">
+                <p><strong>População (N):</strong> Total de unidades da série.</p>
+                <p><strong>Estrato:</strong> Subdivisão por Código de Classificação + Ano de Produção.</p>
+                <p><strong>Unidade documental:</strong> Processo, dossiê, prontuário (definido uma vez).</p>
+                <p><strong>Amostra (n):</strong> Subconjunto selecionado para guarda permanente.</p>
+                <p><strong>Parcela Probabilística (P):</strong> Selecionada por sorteio (mín. 70%).</p>
+                <p><strong>Parcela Qualitativa (Q):</strong> Selecionada por critérios de valor (máx. 30%).</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-legal"></i> Capítulo 3 – Aplicabilidade</summary>
+            <div class="content">
+                <p>Aplica-se a documentos físicos (papel) com prazos de guarda cumpridos e decisão de eliminação formalizada.</p>
+                <p><strong>Não se aplica diretamente</strong> a nato-digitais (necessita adaptações, mas fundamentos são válidos).</p>
+                <p>Para documentos sigilosos (Lei 12.527/2011), a metodologia é aplicável, com restrições de acesso e registro.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-layer-group"></i> Capítulo 4 – Amostragem: Conceitos e Tipos</summary>
+            <div class="content">
+                <p><strong>Probabilística:</strong> Probabilidade de seleção conhecida e > 0. Permite auditabilidade matemática.</p>
+                <p><strong>Não probabilística:</strong> Seleção por critérios de valor. Não permite inferência, mas é essencial para preservar excepcionalidades.</p>
+                <p>O método proposto é <strong>híbrido</strong> (P + Q), atendendo aos critérios quantitativos e qualitativos da legislação.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-dice"></i> Capítulo 5 – Técnicas Probabilísticas</summary>
+            <div class="content">
+                <h4>5.1 Amostragem Aleatória Simples (AAS)</h4>
+                <p>Numeração de 1 a <em>N<sub>i</sub></em> e sorteio de <em>P</em> números únicos com seed registrada. Recomendada quando não há ordenação estável.</p>
+                <h4>5.2 Amostragem Sistemática (Método Preferencial)</h4>
+                <p>Utiliza <strong>intervalo fracionário</strong> <em>K</em> = <em>N<sub>i</sub></em> / <em>P</em> (sem truncar).</p>
+                <div class="formula-box">
+                    posição<sub>j</sub> = ⌈ <em>r</em> + (j−1) × <em>K</em> ⌉, com <em>r</em> sorteado entre 1 e <em>K</em>
+                </div>
+                <p>O método padrão é o intervalo fracionário, que gera exatamente <em>P</em> unidades, distribuídas uniformemente, evitando excessos ou déficits.</p>
+                <h4>5.3 Amostragem Estratificada</h4>
+                <p>Divisão em estratos homogêneos (Código + Ano). Alocação proporcional com <strong>piso de 1 unidade</strong> (IN APE/SAESP).</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-calculator"></i> Capítulo 6 – Técnicas Não Probabilísticas (Qualitativa)</summary>
+            <div class="content">
+                <p>Critérios obrigatórios (IN APE/SAESP, art. 4º):</p>
+                <ul>
+                    <li>Pessoas ou grupos representativos;</li>
+                    <li>Eventos de grande repercussão;</li>
+                    <li>Períodos históricos relevantes;</li>
+                    <li>Alterações significativas de procedimentos;</li>
+                    <li>Fatos excepcionais.</li>
+                </ul>
+                <p><strong>Para séries homogêneas:</strong> priorizar primeiro/último documento, mudanças de layout, anomalias.</p>
+                <p>Na ausência de critérios, retirar <strong>1 unidade aleatória</strong> da série (§2º).</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-chart-line"></i> Capítulo 7 – Cálculo do Tamanho da Amostra</summary>
+            <div class="content">
+                <p><strong>Parâmetros fixos (conservadores):</strong></p>
+                <ul>
+                    <li>Z = 1,96 (95% confiança)</li>
+                    <li>e = 0,05 (5% erro)</li>
+                    <li>p = 0,5 (máxima variabilidade)</li>
+                </ul>
+                <div class="formula-box">
+                    n<sub>0</sub> = (1,96² × 0,5 × 0,5) / 0,05² = <strong>384,16</strong>
+                </div>
+                <div class="formula-box">
+                    n = n<sub>0</sub> / (1 + (n<sub>0</sub> − 1) / N)
+                </div>
+                <p><strong>Arredondamento:</strong> Arredonde <em>n</em> para o <strong>inteiro mais próximo</strong> (regra 5/4).</p>
+                <p>Se <em>n</em> ≥ <em>N</em>, preservar toda a população (censo).</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-sitemap"></i> Capítulo 8 – Metodologia Detalhada (Fluxo de 15 Etapas)</summary>
+            <div class="content">
+                <div class="step"><h4>Etapa 1 – Delimitar a série</h4><p>Identificar a série com base na Tabela de Temporalidade.</p></div>
+                <div class="step"><h4>Etapa 2 – Definir a unidade documental</h4><p>Ex.: processo administrativo, prontuário, dossiê. Fixa para toda a série.</p></div>
+                <div class="step"><h4>Etapa 3 – Estratificar</h4><p><strong>Obrigatório:</strong> Código de Classificação + Ano de Produção.</p></div>
+                <div class="step"><h4>Etapa 4 – Levantar N<sub>i</sub></h4><p>Contagem física ou por inventário. Estratos com <strong>N<sub>i</sub> ≤ 20</strong> são preservados integralmente (censo) e excluídos do cálculo estatístico.</p></div>
+                <div class="step"><h4>Etapa 5 – Calcular n (Cochran)</h4><p>Aplicar fórmulas do Cap. 7. Arredondar para o inteiro mais próximo.</p></div>
+                <div class="step"><h4>Etapa 6 – Alocar n<sub>i</sub> proporcionalmente</h4><p><em>n<sub>i</sub></em> = <em>n</em> × <em>N<sub>i</sub></em> / <em>N</em>. Arredondamento: inteiro mais próximo. Piso: se <em>n<sub>i</sub></em> < 1, atribuir 1.</p></div>
+                <div class="step"><h4>Etapa 7 – Ajuste da soma para n</h4><p>Some os <em>n<sub>i</sub></em> arredondados. Se soma > n, subtraia dos menores restos; se soma < n, adicione aos maiores restos.</p></div>
+                <div class="step"><h4>Etapa 8 – Dividir em P (prob.) e Q (qual.)</h4><p>Padrão: P = floor(<em>n<sub>i</sub></em> × 0,8); Q = <em>n<sub>i</sub></em> − P. Proporção pode variar entre 70% e 90% com justificativa.</p></div>
+                <div class="step"><h4>Etapa 9 – Escolher método probabilístico</h4><p>Preferencial: Sistemática Fracionária (K = N<sub>i</sub>/P). Fallback: AAS se não houver ordenação estável ou risco de ciclo.</p></div>
+                <div class="step"><h4>Etapa 10 – Executar sorteio</h4><p>Utilizar seed registrada. Gerar posições pela fórmula fracionária.</p></div>
+                <div class="step"><h4>Etapa 11 – Selecionar Q</h4><p>Aplicar critérios do Cap. 6. Justificar unidade por unidade.</p></div>
+                <div class="step"><h4>Etapa 12 – Tratar não localizados</h4><p>Substituir por novo sorteio (P) ou próximo equivalente (Q).</p></div>
+                <div class="step"><h4>Etapa 13 – Tratar agregados (se inviável listagem individual)</h4><p>Sortear caixas/pastas, registrando o nível de agregação.</p></div>
+                <div class="step"><h4>Etapa 14 – Avaliar estratos com n<sub>i</sub> < 5</h4><p>Avaliar preservação integral com base em 4 fatores (unicidade, similaridade, relevância, orientação da CADA).</p></div>
+                <div class="step"><h4>Etapa 15 – Registrar e encerrar</h4><p>Preencher o formulário (Apêndice A) com todos os parâmetros, seed, listas e justificativas.</p></div>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-check-double"></i> Capítulo 9 – Exemplo de Aplicação</summary>
+            <div class="content">
+                <p><strong>Cenário:</strong> Série 03.02, 2019-2022, N = 6.500.</p>
+                <p><strong>Cálculo:</strong> n<sub>0</sub> = 384,16; n = 363 (arredondado).</p>
+                <p><strong>Alocação:</strong> 2019: 66; 2020: 101; 2021: 112; 2022: 84 (total 363).</p>
+                <p><strong>P/Q:</strong> 291 / 72 (80% / 20%).</p>
+                <p><strong>Sorteio sistemático:</strong> K = 1200/53 = 22,64; r = 5,2; posições: 6, 28, 51... </p>
+                <p>O exemplo completo demonstra o ajuste de arredondamento e a aplicação do piso mínimo.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-microchip"></i> Capítulo 10 – Recomendações Técnicas Avançadas</summary>
+            <div class="content">
+                <h4>10.1 Seed e Reprodutibilidade</h4>
+                <p>A semente deve ser um número <strong>arbitrário</strong> (ex.: timestamp da geração) e registrada <strong>após</strong> o sorteio. Recomenda-se evitar seeds óbvias como 0, 1 ou 12345.</p>
+                <h4>10.2 Ordenação estável</h4>
+                <p>Definir e registrar o critério de ordenação (cronológico, numérico) antes da numeração.</p>
+                <h4>10.3 Tratamento de duplicidades</h4>
+                <p>Na AAS, descartar números repetidos e sortear novos.</p>
+                <h4>10.4 Estratos censitários</h4>
+                <p>N<sub>i</sub> ≤ 20 → preservação integral.</p>
+                <h4>10.5 Modalidade autônoma por código</h4>
+                <p>Para acervos com <strong>até 5 códigos</strong> ou sob contencioso, pode-se calcular n para cada código separadamente. A soma final será maior, mas oferece defensabilidade jurídica.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-clipboard-list"></i> Apêndice A – Formulário de Registro</summary>
+            <div class="content">
+                <p>Campos obrigatórios:</p>
+                <ul>
+                    <li>Órgão / Série / Código / Período</li>
+                    <li>Unidade documental definida</li>
+                    <li>Critérios de estratificação</li>
+                    <li>N (população) e n (amostra)</li>
+                    <li>Método probabilístico (AAS ou Sistemática) e K utilizado</li>
+                    <li>Seed, software e versão</li>
+                    <li>Lista de números sorteados</li>
+                    <li>Identificação das unidades (P e Q separados)</li>
+                    <li>Justificativa de cada unidade Q</li>
+                    <li>Exceções e substituições</li>
+                    <li>Decisão sobre estratos pequenos (N≤20 ou n<5)</li>
+                    <li>Data e responsável técnico</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-gavel"></i> Apêndice B – Extratos da Legislação</summary>
+            <div class="content">
+                <h4>Decreto Nº 48.897, de 27 de agosto de 2004</h4>
+                <p><strong>Artigo 29</strong> – Dos documentos destinados à eliminação serão selecionadas amostragens para guarda permanente.</p>
+                <p><em>Parágrafo único</em> – Considera-se amostragem documental o fragmento representativo de um conjunto de documentos destinado à eliminação, selecionado por meio de critérios qualitativos e quantitativos.</p>
+
+                <h4>Instrução Normativa APE/SAESP n. 3, de 14 de setembro de 2015</h4>
+                <p><strong>Artigo 4º</strong> – Poderão ser recolhidos à Unidade do Arquivo Público do Estado, por serem considerados de guarda permanente, os documentos destinados à eliminação selecionados por amostragem.</p>
+                <p><strong>§1º</strong> – A seleção das amostras será realizada por método qualitativo dentro de cada uma das séries documentais a serem eliminadas, por meio dos critérios elencados na Seção V-A deste manual.</p>
+                <p><strong>§2º</strong> – Na ausência de documentos com essas características, deverá ser retirado aleatoriamente ao menos 1 documento de cada série documental a ser eliminada.</p>
+            </div>
+        </details>
+
+        <details>
+            <summary><i class="fas fa-book-open"></i> Referências</summary>
+            <div class="content">
+                <ul>
+                    <li>ARQUIVO PÚBLICO DO ESTADO DE SÃO PAULO. <em>Como avaliar documentos de arquivo</em>. São Paulo: Arquivo do Estado; Imprensa Oficial, 2004.</li>
+                    <li>BELLOTTO, Heloísa Liberalli; CAMARGO, Ana Maria de Almeida (org.). <em>Dicionário de terminologia arquivística</em>. São Paulo: Associação dos Arquivistas Brasileiros, 1996.</li>
+                    <li>BRASIL. Conselho Nacional de Arquivos (CONARQ). <em>Dicionário brasileiro de terminologia arquivística</em>. Rio de Janeiro: Arquivo Nacional, 2005.</li>
+                    <li>COCHRAN, William G. <em>Sampling techniques</em>. 3. ed. New York: John Wiley & Sons, 1977.</li>
+                    <li>CONSELHO NACIONAL DE JUSTIÇA (CNJ). <em>Manual de gestão documental do Poder Judiciário</em>. 3. ed. Brasília: CNJ, 2024.</li>
+                    <li>FONSECA, Vitor Manoel Marques da. Usos e experiências da amostragem documental. <em>Revista do Arquivo Público Mineiro</em>, v. 50, n. 2, 2014.</li>
+                    <li>OLIVEIRA, Daíse Apparecida. <em>Manual para gestão sistêmica de documentos e informações municipais</em>. Uberaba: Prefeitura Municipal de Uberaba, 2008.</li>
+                    <li>SÃO PAULO (Estado). Decreto nº 48.897, de 27 de agosto de 2004.</li>
+                    <li>SÃO PAULO (Estado). Instrução Normativa APE/SAESP n. 3, de 14 de setembro de 2015.</li>
+                    <li>SOCIETY OF AMERICAN ARCHIVISTS (SAA). <em>Dictionary of archives terminology</em>. Chicago: SAA, 2020.</li>
+                </ul>
+            </div>
+        </details>
+
+        <div style="margin-top: 24px; padding: 16px; background: #e3f2fd; border-radius: 12px; border: 1px solid #90caf9;">
+            <p style="margin: 0; color: #0d47a1;"><i class="fas fa-check-circle" style="color: #1976d2;"></i> <strong>Manual validado:</strong> Método alinhado com a IN APE/SAESP 3/2015 e com as boas práticas de amostragem arquivística.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Baseado no Decreto 48.897/2004 e IN APE/SAESP 3/2015 – Versão integral.</p>
+    </footer>
+</div>
+</body>
+</html>

@@ -137,7 +137,7 @@
             color: var(--text-secondary);
             margin-bottom: 4px;
         }
-        .form-group input {
+        .form-group input, .form-group select {
             padding: 10px 14px;
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -146,7 +146,7 @@
             background: white;
             transition: border 0.2s;
         }
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
@@ -156,6 +156,37 @@
         }
         .form-group input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
+        }
+        .params-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px 20px;
+            background: var(--bg);
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 16px 0;
+            border: 1px solid var(--border);
+        }
+        .params-grid .param-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .params-grid .param-item label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .params-grid .param-item .value-display {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+        }
+        .params-grid .param-item .value-display small {
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
         }
         .estrato-item {
             display: flex;
@@ -183,6 +214,16 @@
             border-radius: var(--radius);
             margin: 20px 0;
             border-left: 4px solid var(--primary-light);
+        }
+        .result-box .param-summary {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+        .result-box .param-summary strong {
+            color: var(--text);
         }
         .seed-control {
             display: flex;
@@ -223,11 +264,15 @@
         tr:last-child td { border-bottom: none; }
         .text-muted { color: var(--text-secondary); }
         .mt-16 { margin-top: 16px; }
+        .mb-16 { margin-bottom: 16px; }
+        .flex-center { display: flex; align-items: center; gap: 8px; }
+
         @media (max-width: 640px) {
             .card { padding: 20px; }
             .form-row { flex-direction: column; align-items: stretch; }
             .form-group { flex: 1; }
             .nav-links a { padding: 6px 12px; font-size: 0.8rem; }
+            .params-grid { grid-template-columns: 1fr 1fr; }
         }
         footer {
             margin-top: 48px;
@@ -236,6 +281,12 @@
             text-align: center;
             color: var(--text-secondary);
             font-size: 0.9rem;
+        }
+        .param-help {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -249,15 +300,59 @@
             <a href="manual-completo.html"><i class="fas fa-file-alt"></i> Manual Completo</a>
             <a href="ferramenta.html" class="active"><i class="fas fa-calculator"></i> Calculadora</a>
             <a href="formulario.html"><i class="fas fa-file-pdf"></i> Formulário</a>
-
         </div>
     </nav>
 
     <div class="card">
         <h2><i class="fas fa-calculator" style="color: var(--primary-light);"></i> Calculadora de Amostragem</h2>
-        <p class="text-muted">Ferramenta interativa que implementa o fluxo completo do manual.</p>
+        <p class="text-muted">Configure os parâmetros, adicione os estratos e clique em <strong>Calcular</strong>. A ferramenta aplica todo o fluxo do manual.</p>
 
+        <!-- ============================================================ -->
+        <!-- SEÇÃO DE PARÂMETROS CONFIGURÁVEIS -->
+        <!-- ============================================================ -->
+        <div style="margin: 20px 0 12px 0;">
+            <h4 style="font-weight:600; color:var(--primary-dark); font-size:1.1rem;">
+                <i class="fas fa-sliders-h" style="color:var(--primary-light);"></i> Parâmetros da Amostragem
+            </h4>
+            <div class="params-grid">
+                <div class="param-item">
+                    <label for="paramZ">Z (Confiança)</label>
+                    <input type="number" id="paramZ" value="1.96" step="0.01" min="1.0" max="3.0">
+                    <span class="param-help">Padrão: 1,96 (95%)</span>
+                </div>
+                <div class="param-item">
+                    <label for="paramE">e (Erro)</label>
+                    <input type="number" id="paramE" value="0.05" step="0.01" min="0.01" max="0.10">
+                    <span class="param-help">Padrão: 0,05 (5%)</span>
+                </div>
+                <div class="param-item">
+                    <label for="paramP">p (Proporção)</label>
+                    <input type="number" id="paramP" value="0.5" step="0.05" min="0.1" max="0.9">
+                    <span class="param-help">Padrão: 0,5 (máx. variância)</span>
+                </div>
+                <div class="param-item">
+                    <label for="paramPercP">% Probabilística (P)</label>
+                    <input type="number" id="paramPercP" value="80" step="1" min="50" max="95">
+                    <span class="param-help">Padrão: 80% (Q = 20%)</span>
+                </div>
+                <div class="param-item">
+                    <label for="paramMetodo">Método Probabilístico</label>
+                    <select id="paramMetodo">
+                        <option value="sistematica">Sistemática Fracionária (recomendado)</option>
+                        <option value="aas">AAS (Aleatória Simples)</option>
+                    </select>
+                    <span class="param-help">Padrão: Sistemática</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ESTRATOS -->
+        <!-- ============================================================ -->
         <div style="margin: 24px 0;">
+            <h4 style="font-weight:600; color:var(--primary-dark); font-size:1.1rem;">
+                <i class="fas fa-layer-group" style="color:var(--primary-light);"></i> Estratos
+            </h4>
             <div class="form-row">
                 <div class="form-group">
                     <label>Nome do estrato (ex.: 03.02/2019)</label>
@@ -265,13 +360,16 @@
                 </div>
                 <div class="form-group">
                     <label>População (N<sub>i</sub>)</label>
-                    <input type="number" id="estratoPop" placeholder="Número de unidades" min="1">
+                    <input type="number" id="estratoPop" placeholder="Nº de unidades" min="1">
                 </div>
                 <button class="btn" id="btnAddEstrato"><i class="fas fa-plus"></i> Adicionar</button>
             </div>
             <div id="listaEstratos" style="margin: 12px 0;"></div>
         </div>
 
+        <!-- ============================================================ -->
+        <!-- SEED E CALCULAR -->
+        <!-- ============================================================ -->
         <div class="seed-control">
             <label for="seedInput"><i class="fas fa-dice"></i> Semente (seed):</label>
             <input type="number" id="seedInput" value="42" min="0" step="1">
@@ -282,6 +380,9 @@
             <i class="fas fa-play"></i> Calcular Amostra
         </button>
 
+        <!-- ============================================================ -->
+        <!-- RESULTADOS -->
+        <!-- ============================================================ -->
         <div id="resultados" style="display: none;">
             <div class="result-box" id="resumoGlobal"></div>
             <div class="table-wrap" id="tabelaAlocacao"></div>
@@ -367,7 +468,7 @@
     }
 
     // ============================================================
-    // CÁLCULO PRINCIPAL
+    // CÁLCULO PRINCIPAL (COM PARÂMETROS DINÂMICOS)
     // ============================================================
     document.getElementById('btnCalcular').addEventListener('click', function() {
         if (estratos.length === 0) {
@@ -375,11 +476,27 @@
             return;
         }
 
+        // 1. LER PARÂMETROS
+        const Z = parseFloat(document.getElementById('paramZ').value) || 1.96;
+        const e = parseFloat(document.getElementById('paramE').value) || 0.05;
+        const p = parseFloat(document.getElementById('paramP').value) || 0.5;
+        const percP = parseFloat(document.getElementById('paramPercP').value) || 80;
+        const metodo = document.getElementById('paramMetodo').value;
+
+        // Validar parâmetros
+        if (Z < 1.0 || Z > 3.0) { alert('Z deve estar entre 1,0 e 3,0.'); return; }
+        if (e <= 0 || e > 0.20) { alert('e (erro) deve estar entre 0,01 e 0,20.'); return; }
+        if (p <= 0 || p >= 1) { alert('p (proporção) deve estar entre 0,01 e 0,99.'); return; }
+        if (percP < 50 || percP > 95) { alert('O percentual probabilístico deve estar entre 50% e 95%.'); return; }
+        const percQ = 100 - percP;
+
+        // 2. CÁLCULO DE n (COCHRAN)
         const N = estratos.reduce((s, e) => s + e.pop, 0);
-        const n0 = 384.16;
+        const n0 = (Z * Z * p * (1 - p)) / (e * e);
         let n = n0 / (1 + (n0 - 1) / N);
         n = Math.round(n);
 
+        // 3. ALOCAÇÃO n_i
         let aloc = estratos.map(e => {
             const raw = n * e.pop / N;
             let arred = Math.round(raw);
@@ -387,6 +504,7 @@
             return { ...e, raw, arred, resto: raw - Math.floor(raw) };
         });
 
+        // 4. AJUSTE DA SOMA PARA n
         let somaAtual = aloc.reduce((s, a) => s + a.arred, 0);
         if (somaAtual > n) {
             let dif = somaAtual - n;
@@ -425,49 +543,80 @@
             }
         }
 
+        // 5. DIVIDIR P e Q (USANDO O PERCENTUAL CONFIGURADO)
+        aloc.forEach(a => {
+            const pCount = Math.floor(a.arred * (percP / 100));
+            a.P = pCount;
+            a.Q = a.arred - pCount;
+        });
+
+        // 6. SORTEIO (CONFORME MÉTODO ESCOLHIDO)
         const seed = parseInt(document.getElementById('seedInput').value) || 42;
         const rand = mulberry32(seed);
-
-        aloc.forEach(a => {
-            const p = Math.floor(a.arred * 0.8);
-            a.P = p;
-            a.Q = a.arred - p;
-        });
 
         aloc.forEach(a => {
             const N_i = a.pop;
             const P = a.P;
             if (P === 0) { a.sorteados = []; return; }
-            const K = N_i / P;
-            const r = rand() * K;
-            const posicoes = [];
-            for (let j = 1; j <= P; j++) {
-                const pos = Math.ceil(r + (j - 1) * K);
-                if (pos <= N_i) posicoes.push(pos);
+
+            if (metodo === 'aas') {
+                // AMOSTRAGEM ALEATÓRIA SIMPLES (sem reposição)
+                const sorteados = new Set();
+                while (sorteados.size < P) {
+                    const num = Math.floor(rand() * N_i) + 1;
+                    sorteados.add(num);
+                }
+                a.sorteados = Array.from(sorteados);
+            } else {
+                // SISTEMÁTICA FRACIONÁRIA (padrão)
+                const K = N_i / P;
+                const r = rand() * K;
+                const posicoes = [];
+                for (let j = 1; j <= P; j++) {
+                    const pos = Math.ceil(r + (j - 1) * K);
+                    if (pos <= N_i) posicoes.push(pos);
+                }
+                // Fallback caso o número de posições seja menor que P (raramente ocorre)
+                while (posicoes.length < P) {
+                    const extra = Math.floor(rand() * N_i) + 1;
+                    if (!posicoes.includes(extra)) posicoes.push(extra);
+                }
+                a.sorteados = posicoes.slice(0, P);
             }
-            while (posicoes.length < P) {
-                const extra = Math.floor(rand() * N_i) + 1;
-                if (!posicoes.includes(extra)) posicoes.push(extra);
-            }
-            a.sorteados = posicoes.slice(0, P);
         });
 
-        exibirResultados(N, n, aloc, seed);
+        // 7. EXIBIR RESULTADOS
+        exibirResultados(N, n, aloc, seed, { Z, e, p, percP, percQ, metodo, n0 });
     });
 
-    function exibirResultados(N, n, aloc, seed) {
+    function exibirResultados(N, n, aloc, seed, params) {
         const resultadosDiv = document.getElementById('resultados');
         resultadosDiv.style.display = 'block';
 
         const totalPreservado = aloc.reduce((s, a) => s + a.arred, 0);
+        const metodoLabel = params.metodo === 'aas' ? 'AAS (Aleatória Simples)' : 'Sistemática Fracionária';
+
+        // Resumo com parâmetros
         document.getElementById('resumoGlobal').innerHTML = `
-            <strong>População total (N):</strong> ${N} &nbsp;|&nbsp;
-            <strong>n (Cochran):</strong> ${n} &nbsp;|&nbsp;
-            <strong>Estratos:</strong> ${aloc.length} &nbsp;|&nbsp;
-            <strong>Total preservado:</strong> ${totalPreservado} &nbsp;|&nbsp;
-            <strong>Seed:</strong> ${seed}
+            <div style="display:flex; flex-wrap:wrap; gap:12px 32px; margin-bottom:8px;">
+                <span><strong>População total (N):</strong> ${N}</span>
+                <span><strong>n (Cochran):</strong> ${n}</span>
+                <span><strong>n₀:</strong> ${params.n0.toFixed(2)}</span>
+                <span><strong>Estratos:</strong> ${aloc.length}</span>
+                <span><strong>Total preservado:</strong> ${totalPreservado}</span>
+                <span><strong>Seed:</strong> ${seed}</span>
+            </div>
+            <div class="param-summary">
+                <strong><i class="fas fa-cog"></i> Parâmetros utilizados:</strong>
+                Z = ${params.Z} (${(params.Z === 1.96 ? '95%' : (params.Z === 2.576 ? '99%' : 'personalizado'))} confiança) &nbsp;|&nbsp;
+                e = ${params.e} (${(params.e * 100).toFixed(0)}% erro) &nbsp;|&nbsp;
+                p = ${params.p} (proporção) &nbsp;|&nbsp;
+                <strong>P/Q</strong> = ${params.percP}% / ${params.percQ}% &nbsp;|&nbsp;
+                <strong>Método:</strong> ${metodoLabel}
+            </div>
         `;
 
+        // Tabela de alocação
         let html = `<table>
             <thead><tr>
                 <th>Estrato</th>
@@ -491,6 +640,7 @@
         html += `</tbody></table>`;
         document.getElementById('tabelaAlocacao').innerHTML = html;
 
+        // Detalhamento dos sorteios
         let detalhesHtml = `<div style="margin-top:20px;"><h4><i class="fas fa-list-ul"></i> Detalhamento dos sorteios</h4>`;
         aloc.forEach(a => {
             if (a.sorteados.length > 0) {
@@ -502,9 +652,13 @@
         detalhesHtml += `</div>`;
         document.getElementById('detalhesSorteados').innerHTML = detalhesHtml;
 
-        window._dadosExport = { N, n, aloc, seed };
+        // Guarda dados para exportação
+        window._dadosExport = { N, n, aloc, seed, params };
     }
 
+    // ============================================================
+    // EXPORTAR CSV
+    // ============================================================
     document.getElementById('btnExportCSV').addEventListener('click', function() {
         const dados = window._dadosExport;
         if (!dados) { alert('Nenhum resultado para exportar.'); return; }
@@ -514,6 +668,7 @@
             csv += `${a.nome},${a.pop},${a.arred},${a.P},${a.Q},"${sort}"\n`;
         });
         csv += `\nResumo,População Total,${dados.N},n (Cochran),${dados.n},Seed,${dados.seed}\n`;
+        csv += `Parâmetros,Z,${dados.params.Z},e,${dados.params.e},p,${dados.params.p},P%,${dados.params.percP},Q%,${dados.params.percQ},Método,${dados.params.metodo}\n`;
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
@@ -522,12 +677,17 @@
         URL.revokeObjectURL(link.href);
     });
 
+    // ============================================================
+    // SEED ALEATÓRIA
+    // ============================================================
     document.getElementById('btnRandomSeed').addEventListener('click', function() {
         const seed = Math.floor(Math.random() * 1000000);
         document.getElementById('seedInput').value = seed;
     });
 
-    // Exemplos iniciais
+    // ============================================================
+    // INICIALIZAÇÃO
+    // ============================================================
     const exemplos = [
         { nome: '03.02/2019', pop: 1200 },
         { nome: '03.02/2020', pop: 1800 },

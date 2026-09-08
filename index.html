@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual de Amostragem Documental</title>
+    <title>Amostragem Documental – Início</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* === RESET e VARIÁVEIS === */
         * {
             margin: 0;
             padding: 0;
@@ -41,8 +40,6 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        /* === NAV === */
         nav {
             padding: 24px 0 16px;
             border-bottom: 1px solid var(--border);
@@ -75,10 +72,6 @@
             font-weight: 500;
             font-size: 0.9rem;
             transition: all 0.2s;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            white-space: nowrap;
         }
         .nav-links a:hover {
             background: var(--surface);
@@ -89,21 +82,6 @@
             background: var(--primary);
             color: white;
         }
-
-        /* === SEÇÕES === */
-        .section {
-            display: none;
-            animation: fadeUp 0.3s ease;
-        }
-        .section.active {
-            display: block;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* === CARDS E ELEMENTOS === */
         .card {
             background: var(--surface);
             border-radius: var(--radius);
@@ -111,30 +89,6 @@
             box-shadow: var(--shadow);
             margin: 24px 0;
             border: 1px solid var(--border);
-        }
-        .card h2 {
-            margin-top: 0;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-            font-size: 1.8rem;
-            color: var(--primary-dark);
-        }
-        .card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin: 24px 0 12px;
-        }
-        .card h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin: 16px 0 6px;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
         }
         .btn {
             display: inline-flex;
@@ -164,215 +118,19 @@
             background: var(--primary);
             color: white;
         }
-        .badge {
-            background: var(--primary-light);
-            color: white;
-            border-radius: 40px;
-            padding: 2px 14px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .badge-dark {
-            background: var(--text-secondary);
-        }
-
-        /* === MANUAL COMPLETO (ACORDEÃO) === */
-        details {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0 20px;
-            margin: 12px 0;
-            background: var(--surface);
-            transition: all 0.2s;
-        }
-        details summary {
-            padding: 16px 0;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--primary-dark);
-            list-style: none;
-        }
-        details summary::-webkit-details-marker {
-            display: none;
-        }
-        details summary::after {
-            content: "\f078";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 600;
-            margin-left: auto;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            transition: transform 0.2s;
-        }
-        details[open] summary::after {
-            transform: rotate(180deg);
-        }
-        details .content {
-            padding-bottom: 20px;
-            color: var(--text-secondary);
-        }
-        details .content p {
-            margin: 8px 0;
-        }
-        details .content ul, details .content ol {
-            margin-left: 24px;
-            margin-top: 8px;
-        }
-        details .content li {
-            margin: 4px 0;
-        }
-        .formula-box {
-            background: var(--bg);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 12px 0;
-            font-family: 'Courier New', monospace;
-            font-size: 1.05rem;
-            border-left: 4px solid var(--primary-light);
-        }
-        .table-wrap {
-            overflow-x: auto;
-            margin: 16px 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-        }
-        th {
-            background: var(--bg);
-            text-align: left;
-            padding: 10px 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            border-bottom: 2px solid var(--border);
-        }
-        td {
-            padding: 8px 14px;
-            border-bottom: 1px solid var(--border);
-        }
-        tr:last-child td { border-bottom: none; }
-
-        /* === FORMULÁRIO DA CALCULADORA === */
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            align-items: end;
-            margin-bottom: 16px;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 180px;
-        }
-        .form-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
-        }
-        .form-group input {
-            padding: 10px 14px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: var(--font);
-            background: white;
-            transition: border 0.2s;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-        .form-group input[type="number"] {
-            -moz-appearance: textfield;
-        }
-        .form-group input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-        }
-        .estrato-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .estrato-item:last-child { border-bottom: none; }
-        .estrato-info {
-            display: flex;
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 24px;
-            flex-wrap: wrap;
-        }
-        .estrato-info strong {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        .estrato-info span {
-            font-weight: 600;
-        }
-        .result-box {
-            background: var(--bg);
-            padding: 20px 24px;
-            border-radius: var(--radius);
-            margin: 20px 0;
-            border-left: 4px solid var(--primary-light);
-        }
-        .seed-control {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin: 16px 0;
-        }
-        .seed-control label {
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-        .seed-control input {
-            width: 120px;
-            padding: 8px 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        .step {
-            margin: 16px 0;
-            padding-left: 20px;
-            border-left: 3px solid var(--primary-light);
-        }
-        .step h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin: 0 0 4px;
-        }
-        .step p {
-            margin: 4px 0;
         }
         .text-muted { color: var(--text-secondary); }
+        .text-center { text-align: center; }
         .mt-16 { margin-top: 16px; }
-        .mb-16 { margin-bottom: 16px; }
-        .flex-center { display: flex; align-items: center; gap: 8px; }
-        .gap-8 { gap: 8px; }
 
-        /* === RESPONSIVE === */
         @media (max-width: 640px) {
             .card { padding: 20px; }
-            .form-row { flex-direction: column; align-items: stretch; }
-            .form-group { flex: 1; }
             .nav-links a { padding: 6px 12px; font-size: 0.8rem; }
-            .logo { font-size: 1.1rem; }
-            details { padding: 0 12px; }
-            details summary { font-size: 1rem; }
         }
-
         footer {
             margin-top: 48px;
             padding-top: 24px;
@@ -381,653 +139,56 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
 <div class="container">
-
-    <!-- NAV -->
     <nav>
         <div class="logo"><i class="fas fa-archive"></i> AmostragemDoc</div>
-        <div class="nav-links" id="navLinks">
-            <a class="active" data-section="inicio"><i class="fas fa-home"></i> Início</a>
-            <a data-section="manual"><i class="fas fa-book"></i> Manual Simpl.</a>
-            <a data-section="manual-completo"><i class="fas fa-file-alt"></i> Manual Completo</a>
-            <a data-section="calculadora"><i class="fas fa-calculator"></i> Calculadora</a>
+        <div class="nav-links">
+            <a href="index.html" class="active"><i class="fas fa-home"></i> Início</a>
+            <a href="manual-simplificado.html"><i class="fas fa-book"></i> Manual Simpl.</a>
+            <a href="manual-completo.html"><i class="fas fa-file-alt"></i> Manual Completo</a>
+            <a href="ferramenta.html"><i class="fas fa-calculator"></i> Calculadora</a>
         </div>
     </nav>
 
-    <!-- ============================================================ -->
-    <!-- SEÇÃO INÍCIO -->
-    <!-- ============================================================ -->
-    <section id="section-inicio" class="section active">
-        <div class="card" style="text-align: center; padding: 48px 32px;">
-            <h1 style="font-size: 2.6rem; font-weight: 700; color: var(--primary-dark); letter-spacing: -1px;">
-                <i class="fas fa-file-signature" style="color: var(--primary-light);"></i> Amostragem Documental
-            </h1>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 16px auto;">
-                Método objetivo, estatisticamente consistente e em conformidade com a legislação do SAESP.
-            </p>
-            <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin: 32px 0;">
-                <a href="#" class="btn" data-section="manual"><i class="fas fa-book-open"></i> Manual Simpl.</a>
-                <a href="#" class="btn btn-outline" data-section="manual-completo"><i class="fas fa-file-alt"></i> Manual Completo</a>
-                <a href="#" class="btn" data-section="calculadora"><i class="fas fa-calculator"></i> Calculadora</a>
-            </div>
+    <div class="card" style="text-align: center; padding: 48px 32px;">
+        <h1 style="font-size: 2.6rem; font-weight: 700; color: var(--primary-dark); letter-spacing: -1px;">
+            <i class="fas fa-file-signature" style="color: var(--primary-light);"></i> Amostragem Documental
+        </h1>
+        <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 16px auto;">
+            Método objetivo, estatisticamente consistente e em conformidade com a legislação do SAESP.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin: 32px 0;">
+            <a href="manual-simplificado.html" class="btn"><i class="fas fa-book-open"></i> Manual Simpl.</a>
+            <a href="manual-completo.html" class="btn btn-outline"><i class="fas fa-file-alt"></i> Manual Completo</a>
+            <a href="ferramenta.html" class="btn"><i class="fas fa-calculator"></i> Calculadora</a>
         </div>
-        <div class="grid-2">
-            <div class="card">
-                <h3><i class="fas fa-check-circle" style="color: var(--primary-light);"></i> Versão Resumida</h3>
-                <p class="text-muted">10 passos objetivos para aplicar a amostragem na rotina.</p>
-                <a href="#" class="btn" data-section="manual" style="margin-top:12px;">Acessar</a>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Versão Integral</h3>
-                <p class="text-muted">Manual completo com todos os fundamentos, exemplos e formulários.</p>
-                <a href="#" class="btn" data-section="manual-completo" style="margin-top:12px;">Acessar</a>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-chart-pie" style="color: var(--primary-light);"></i> Calculadora</h3>
-                <p class="text-muted">Ferramenta interativa que implementa todo o fluxo operacional.</p>
-                <a href="#" class="btn" data-section="calculadora" style="margin-top:12px;">Abrir</a>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <!-- ============================================================ -->
-    <!-- SEÇÃO MANUAL SIMPLIFICADO -->
-    <!-- ============================================================ -->
-    <section id="section-manual" class="section">
+    <div class="grid-2">
         <div class="card">
-            <h2><i class="fas fa-book" style="color: var(--primary-light);"></i> Manual Simplificado</h2>
-            <p class="text-muted">Versão resumida em 10 passos objetivos.</p>
-            <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
-            <div class="step"><h4>1. Delimitar e Estratificar</h4><p>Use <strong>Código + Ano</strong>. Defina a unidade documental.</p></div>
-            <div class="step"><h4>2. Contar a População</h4><p>Some <em>N<sub>i</sub></em> para obter <em>N</em>. Se <em>N<sub>i</sub></em> ≤ 20, preserve integralmente.</p></div>
-            <div class="step"><h4>3. Calcular n (Cochran)</h4><p><em>n<sub>0</sub></em> = 384,16; <em>n</em> = <em>n<sub>0</sub></em> / (1 + (<em>n<sub>0</sub></em>−1)/<em>N</em>). Arredonde para o inteiro mais próximo.</p></div>
-            <div class="step"><h4>4. Alocar n<sub>i</sub></h4><p><em>n<sub>i</sub></em> = <em>n</em> × <em>N<sub>i</sub></em> / <em>N</em>. Arredonde e ajuste a soma para <em>n</em>.</p></div>
-            <div class="step"><h4>5. Dividir P e Q</h4><p>Padrão 80% (probabilística) e 20% (qualitativa).</p></div>
-            <div class="step"><h4>6. Sortear (Sistemática Fracionária)</h4><p><em>K</em> = <em>N<sub>i</sub></em> / <em>P</em>; posição = ⌈<em>r</em> + (j−1)×<em>K</em>⌉. Use <strong>seed</strong>.</p></div>
-            <div class="step"><h4>7. Selecionar Q</h4><p>Critérios IN APE/SAESP. Justifique cada unidade.</p></div>
-            <div class="step"><h4>8. Substituir não localizados</h4><p>Novo sorteio (P) ou próximo equivalente (Q). Registre.</p></div>
-            <div class="step"><h4>9. Registrar e seed</h4><p>Seed arbitrária (ex.: timestamp). Evite 0, 1, 12345.</p></div>
-            <div class="step"><h4>10. Consolidar</h4><p>Some censos + P + Q. Preencha o formulário.</p></div>
+            <h3><i class="fas fa-check-circle" style="color: var(--primary-light);"></i> Versão Resumida</h3>
+            <p class="text-muted">10 passos objetivos para aplicar a amostragem na rotina.</p>
+            <a href="manual-simplificado.html" class="btn" style="margin-top:12px;">Acessar</a>
         </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- SEÇÃO MANUAL COMPLETO -->
-    <!-- ============================================================ -->
-    <section id="section-manual-completo" class="section">
         <div class="card">
-            <h2><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Manual Completo</h2>
-            <p class="text-muted">Versão integral – Método de amostragem híbrida (probabilística e qualitativa) em conformidade com a legislação do SAESP.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;">
-                <span class="badge"><i class="fas fa-check"></i> Estratificação Código + Ano</span>
-                <span class="badge"><i class="fas fa-check"></i> Arredondamento padrão</span>
-                <span class="badge"><i class="fas fa-check"></i> Seed obrigatória</span>
-                <span class="badge"><i class="fas fa-check"></i> Sistemática fracionária</span>
-                <span class="badge"><i class="fas fa-check"></i> Flexibilidade 80/20</span>
-            </div>
-            <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
-
-            <!-- CAPÍTULO 1 -->
-            <details>
-                <summary><i class="fas fa-file-signature"></i> Capítulo 1 – Apresentação e Fundamentação</summary>
-                <div class="content">
-                    <p>Este manual estabelece diretrizes técnicas para amostragem arquivística em conjuntos documentais elimináveis, com base no art. 29 do Decreto 48.897/2004 e na IN APE/SAESP 3/2015.</p>
-                    <p>A fórmula de Cochran é empregada como <strong>dispositivo de dimensionamento conservador</strong>, e não como estimador inferencial. A amostra tem finalidade arquivística (preservação da memória), não estatística.</p>
-                    <p><strong>Finalidades:</strong> testemunhal (documento típico), probatória (auditoria), memória (excepcionalidades) e conformidade (exigência legal).</p>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 2 -->
-            <details>
-                <summary><i class="fas fa-glossary"></i> Capítulo 2 – Termos e Definições</summary>
-                <div class="content">
-                    <p><strong>População (N):</strong> Total de unidades da série.</p>
-                    <p><strong>Estrato:</strong> Subdivisão por Código de Classificação + Ano de Produção.</p>
-                    <p><strong>Unidade documental:</strong> Processo, dossiê, prontuário (definido uma vez).</p>
-                    <p><strong>Amostra (n):</strong> Subconjunto selecionado para guarda permanente.</p>
-                    <p><strong>Parcela Probabilística (P):</strong> Selecionada por sorteio (mín. 70%).</p>
-                    <p><strong>Parcela Qualitativa (Q):</strong> Selecionada por critérios de valor (máx. 30%).</p>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 3 -->
-            <details>
-                <summary><i class="fas fa-legal"></i> Capítulo 3 – Aplicabilidade</summary>
-                <div class="content">
-                    <p>Aplica-se a documentos físicos (papel) com prazos de guarda cumpridos e decisão de eliminação formalizada.</p>
-                    <p><strong>Não se aplica diretamente</strong> a nato-digitais (necessita adaptações, mas fundamentos são válidos).</p>
-                    <p>Para documentos sigilosos (Lei 12.527/2011), a metodologia é aplicável, com restrições de acesso e registro.</p>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 4 -->
-            <details>
-                <summary><i class="fas fa-layer-group"></i> Capítulo 4 – Amostragem: Conceitos e Tipos</summary>
-                <div class="content">
-                    <p><strong>Probabilística:</strong> Probabilidade de seleção conhecida e > 0. Permite auditabilidade matemática.</p>
-                    <p><strong>Não probabilística:</strong> Seleção por critérios de valor. Não permite inferência, mas é essencial para preservar excepcionalidades.</p>
-                    <p>O método proposto é <strong>híbrido</strong> (P + Q), atendendo aos critérios quantitativos e qualitativos da legislação.</p>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 5 -->
-            <details>
-                <summary><i class="fas fa-dice"></i> Capítulo 5 – Técnicas Probabilísticas</summary>
-                <div class="content">
-                    <h4>5.1 Amostragem Aleatória Simples (AAS)</h4>
-                    <p>Numeração de 1 a <em>N<sub>i</sub></em> e sorteio de <em>P</em> números únicos com seed registrada. Recomendada quando não há ordenação estável.</p>
-                    <h4>5.2 Amostragem Sistemática (Método Preferencial)</h4>
-                    <p>Utiliza <strong>intervalo fracionário</strong> <em>K</em> = <em>N<sub>i</sub></em> / <em>P</em> (sem truncar).</p>
-                    <div class="formula-box">
-                        posição<sub>j</sub> = ⌈ <em>r</em> + (j−1) × <em>K</em> ⌉, com <em>r</em> sorteado entre 1 e <em>K</em>
-                    </div>
-                    <p><span class="badge">Vantagem</span> O método padrão é o intervalo fracionário, que gera exatamente <em>P</em> unidades, distribuídas uniformemente, evitando excessos ou déficits.</p>
-                    <h4>5.3 Amostragem Estratificada</h4>
-                    <p>Divisão em estratos homogêneos (Código + Ano). Alocação proporcional com <strong>piso de 1 unidade</strong> (IN APE/SAESP).</p>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 6 -->
-            <details>
-                <summary><i class="fas fa-calculator"></i> Capítulo 6 – Técnicas Não Probabilísticas (Qualitativa)</summary>
-                <div class="content">
-                    <p>Critérios obrigatórios (IN APE/SAESP, art. 4º):</p>
-                    <ul>
-                        <li>Pessoas ou grupos representativos;</li>
-                        <li>Eventos de grande repercussão;</li>
-                        <li>Períodos históricos relevantes;</li>
-                        <li>Alterações significativas de procedimentos;</li>
-                        <li>Fatos excepcionais.</li>
-                    </ul>
-                    <p><strong>Para séries homogêneas:</strong> priorizar primeiro/último documento, mudanças de layout, anomalias.</p>
-                    <p>Na ausência de critérios, retirar <strong>1 unidade aleatória</strong> da série (§2º).</p>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 7 -->
-            <details>
-                <summary><i class="fas fa-chart-line"></i> Capítulo 7 – Cálculo do Tamanho da Amostra</summary>
-                <div class="content">
-                    <p><strong>Parâmetros fixos (conservadores):</strong></p>
-                    <ul>
-                        <li>Z = 1,96 (95% confiança)</li>
-                        <li>e = 0,05 (5% erro)</li>
-                        <li>p = 0,5 (máxima variabilidade)</li>
-                    </ul>
-                    <div class="formula-box">
-                        n<sub>0</sub> = (1,96² × 0,5 × 0,5) / 0,05² = <strong>384,16</strong>
-                    </div>
-                    <div class="formula-box">
-                        n = n<sub>0</sub> / (1 + (n<sub>0</sub> − 1) / N)
-                    </div>
-                    <p><strong>Arredondamento:</strong> Arredonde <em>n</em> para o <strong>inteiro mais próximo</strong> (regra 5/4).</p>
-                    <p><span class="badge">Regra</span> Se <em>n</em> ≥ <em>N</em>, preservar toda a população (censo).</p>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 8 - METODOLOGIA DETALHADA -->
-            <details>
-                <summary><i class="fas fa-sitemap"></i> Capítulo 8 – Metodologia Detalhada (Fluxo de 15 Etapas)</summary>
-                <div class="content">
-                    <div class="step">
-                        <h4>Etapa 1 – Delimitar a série</h4>
-                        <p>Identificar a série com base na Tabela de Temporalidade.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 2 – Definir a unidade documental</h4>
-                        <p>Ex.: processo administrativo, prontuário, dossiê. Fixa para toda a série.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 3 – Estratificar</h4>
-                        <p><strong>Obrigatório:</strong> Código de Classificação + Ano de Produção.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 4 – Levantar N<sub>i</sub></h4>
-                        <p>Contagem física ou por inventário. Estratos com <strong>N<sub>i</sub> ≤ 20</strong> são preservados integralmente (censo) e excluídos do cálculo estatístico.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 5 – Calcular n (Cochran)</h4>
-                        <p>Aplicar fórmulas do Cap. 7. Arredondar para o inteiro mais próximo.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 6 – Alocar n<sub>i</sub> proporcionalmente</h4>
-                        <p><em>n<sub>i</sub></em> = <em>n</em> × <em>N<sub>i</sub></em> / <em>N</em></p>
-                        <p><strong>Arredondamento:</strong> inteiro mais próximo.</p>
-                        <p><strong>Piso:</strong> se <em>n<sub>i</sub></em> < 1, atribuir 1 (IN APE/SAESP).</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 7 – Ajuste da soma para n</h4>
-                        <p>Some os <em>n<sub>i</sub></em> arredondados. O ajuste é realizado com base nos restos decimais, garantindo a maior proximidade proporcional.</p>
-                        <ul>
-                            <li><strong>Se soma > n:</strong> subtraia 1 unidade do(s) estrato(s) de <strong>menor resto decimal</strong>.</li>
-                            <li><strong>Se soma < n:</strong> adicione 1 unidade ao(s) estrato(s) de <strong>maior resto decimal</strong>.</li>
-                        </ul>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 8 – Dividir em P (prob.) e Q (qual.)</h4>
-                        <p><strong>Padrão:</strong> P = floor(<em>n<sub>i</sub></em> × 0,8); Q = <em>n<sub>i</sub></em> − P.</p>
-                        <p>O percentual pode variar entre <strong>70% e 90%</strong> para P, mediante justificativa registrada. A referência de 80% é o padrão.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 9 – Escolher método probabilístico</h4>
-                        <p><strong>Preferencial:</strong> Sistemática Fracionária (K = N<sub>i</sub>/P).</p>
-                        <p><strong>Fallback:</strong> AAS se não houver ordenação estável ou risco de ciclo.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 10 – Executar sorteio</h4>
-                        <p>Utilizar <strong>seed registrada</strong> (ex.: timestamp).</p>
-                        <p>Gerar posições pela fórmula fracionária.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 11 – Selecionar Q</h4>
-                        <p>Aplicar critérios do Cap. 6. Justificar unidade por unidade.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 12 – Tratar não localizados</h4>
-                        <p>Substituir por novo sorteio (P) ou próximo equivalente (Q).</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 13 – Tratar agregados (se inviável listagem individual)</h4>
-                        <p>Sortear caixas/pastas, registrando o nível de agregação.</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 14 – Avaliar estratos com n<sub>i</sub> < 5</h4>
-                        <p>Avaliar preservação integral com base em 4 fatores (unicidade, similaridade, relevância, orientação da CADA).</p>
-                    </div>
-                    <div class="step">
-                        <h4>Etapa 15 – Registrar e encerrar</h4>
-                        <p>Preencher o formulário (Apêndice A) com todos os parâmetros, seed, listas e justificativas.</p>
-                    </div>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 9 -->
-            <details>
-                <summary><i class="fas fa-check-double"></i> Capítulo 9 – Exemplo de Aplicação</summary>
-                <div class="content">
-                    <p><strong>Cenário:</strong> Série 03.02, 2019-2022, N = 6.500.</p>
-                    <p><strong>Cálculo:</strong> n<sub>0</sub> = 384,16; n = 363 (arredondado).</p>
-                    <p><strong>Alocação:</strong> 2019: 66; 2020: 101; 2021: 112; 2022: 84 (total 363).</p>
-                    <p><strong>P/Q:</strong> 291 / 72 (80% / 20%).</p>
-                    <p><strong>Sorteio sistemático:</strong> K = 1200/53 = 22,64; r = 5,2; posições: 6, 28, 51... </p>
-                    <p>O exemplo completo demonstra o ajuste de arredondamento e a aplicação do piso mínimo.</p>
-                </div>
-            </details>
-
-            <!-- CAPÍTULO 10 -->
-            <details>
-                <summary><i class="fas fa-microchip"></i> Capítulo 10 – Recomendações Técnicas Avançadas</summary>
-                <div class="content">
-                    <h4>10.1 Seed e Reprodutibilidade</h4>
-                    <p>A semente deve ser um número <strong>arbitrário</strong> (ex.: timestamp da geração) e registrada <strong>após</strong> o sorteio. Recomenda-se evitar seeds óbvias como 0, 1 ou 12345 para não levantar suspeitas de manipulação.</p>
-                    <h4>10.2 Ordenação estável</h4>
-                    <p>Definir e registrar o critério de ordenação (cronológico, numérico) antes da numeração.</p>
-                    <h4>10.3 Tratamento de duplicidades</h4>
-                    <p>Na AAS, descartar números repetidos e sortear novos.</p>
-                    <h4>10.4 Estratos censitários</h4>
-                    <p>N<sub>i</sub> ≤ 20 → preservação integral.</p>
-                    <h4>10.5 Modalidade autônoma por código</h4>
-                    <p>Para acervos com <strong>até 5 códigos</strong> ou sob contencioso, pode-se calcular n para cada código separadamente. A soma final será maior, mas oferece defensabilidade jurídica.</p>
-                </div>
-            </details>
-
-            <!-- APÊNDICE A -->
-            <details>
-                <summary><i class="fas fa-clipboard-list"></i> Apêndice A – Formulário de Registro</summary>
-                <div class="content">
-                    <p>Campos obrigatórios:</p>
-                    <ul>
-                        <li>Órgão / Série / Código / Período</li>
-                        <li>Unidade documental definida</li>
-                        <li>Critérios de estratificação</li>
-                        <li>N (população) e n (amostra)</li>
-                        <li>Método probabilístico (AAS ou Sistemática) e K utilizado</li>
-                        <li>Seed, software e versão</li>
-                        <li>Lista de números sorteados</li>
-                        <li>Identificação das unidades (P e Q separados)</li>
-                        <li>Justificativa de cada unidade Q</li>
-                        <li>Exceções e substituições</li>
-                        <li>Decisão sobre estratos pequenos (N≤20 ou n<5)</li>
-                        <li>Data e responsável técnico</li>
-                    </ul>
-                </div>
-            </details>
-
-            <div style="margin-top: 24px; padding: 16px; background: #e3f2fd; border-radius: 12px; border: 1px solid #90caf9;">
-                <p style="margin: 0; color: #0d47a1;"><i class="fas fa-check-circle" style="color: #1976d2;"></i> <strong>Manual validado:</strong> Método alinhado com a IN APE/SAESP 3/2015 e com as boas práticas de amostragem arquivística.</p>
-            </div>
+            <h3><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Versão Integral</h3>
+            <p class="text-muted">Manual completo com fundamentos, exemplos, referências e legislação.</p>
+            <a href="manual-completo.html" class="btn" style="margin-top:12px;">Acessar</a>
         </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- SEÇÃO CALCULADORA -->
-    <!-- ============================================================ -->
-    <section id="section-calculadora" class="section">
         <div class="card">
-            <h2><i class="fas fa-calculator" style="color: var(--primary-light);"></i> Calculadora de Amostragem</h2>
-            <p class="text-muted">Ferramenta interativa que implementa o fluxo completo do manual.</p>
-
-            <div style="margin: 24px 0;">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Nome do estrato (ex.: 03.02/2019)</label>
-                        <input type="text" id="estratoNome" placeholder="Código/Ano">
-                    </div>
-                    <div class="form-group">
-                        <label>População (N<sub>i</sub>)</label>
-                        <input type="number" id="estratoPop" placeholder="Número de unidades" min="1">
-                    </div>
-                    <button class="btn" id="btnAddEstrato"><i class="fas fa-plus"></i> Adicionar</button>
-                </div>
-                <div id="listaEstratos" style="margin: 12px 0;"></div>
-            </div>
-
-            <div class="seed-control">
-                <label for="seedInput"><i class="fas fa-dice"></i> Semente (seed):</label>
-                <input type="number" id="seedInput" value="42" min="0" step="1">
-                <button class="btn btn-outline" id="btnRandomSeed"><i class="fas fa-random"></i> Aleatória</button>
-            </div>
-
-            <button class="btn" id="btnCalcular" style="width: 100%; justify-content: center; margin: 8px 0 16px;">
-                <i class="fas fa-play"></i> Calcular Amostra
-            </button>
-
-            <div id="resultados" style="display: none;">
-                <div class="result-box" id="resumoGlobal"></div>
-                <div class="table-wrap" id="tabelaAlocacao"></div>
-                <div id="detalhesSorteados"></div>
-                <button class="btn btn-outline" id="btnExportCSV"><i class="fas fa-file-csv"></i> Exportar CSV</button>
-            </div>
+            <h3><i class="fas fa-chart-pie" style="color: var(--primary-light);"></i> Calculadora</h3>
+            <p class="text-muted">Ferramenta interativa que implementa todo o fluxo operacional.</p>
+            <a href="ferramenta.html" class="btn" style="margin-top:12px;">Abrir</a>
         </div>
-    </section>
+    </div>
 
     <footer>
-        <p>Manual e ferramenta de amostragem documental – Baseado no Decreto 48.897/2004 e IN APE/SAESP 3/2015.</p>
-        <p style="font-size: 0.8rem; margin-top: 4px;">Dados processados apenas localmente. Nenhuma informação é enviada a servidores.</p>
+        <p>Baseado no Decreto 48.897/2004 e IN APE/SAESP 3/2015.</p>
+        <p style="font-size: 0.8rem;">Processamento local – nenhum dado é enviado a servidores.</p>
     </footer>
 </div>
-
-<script>
-    // ============================================================
-    // NAVEGAÇÃO
-    // ============================================================
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = {
-        inicio: document.getElementById('section-inicio'),
-        manual: document.getElementById('section-manual'),
-        'manual-completo': document.getElementById('section-manual-completo'),
-        calculadora: document.getElementById('section-calculadora')
-    };
-
-    function navigateTo(sectionId) {
-        Object.keys(sections).forEach(id => {
-            sections[id].classList.toggle('active', id === sectionId);
-        });
-        navLinks.forEach(link => {
-            link.classList.toggle('active', link.dataset.section === sectionId);
-        });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            navigateTo(link.dataset.section);
-        });
-    });
-
-    document.querySelectorAll('[data-section]').forEach(el => {
-        if (el.tagName === 'A' && el.closest('.section') === null) {
-            el.addEventListener('click', (e) => {
-                e.preventDefault();
-                navigateTo(el.dataset.section);
-            });
-        }
-    });
-
-    // ============================================================
-    // CALCULADORA
-    // ============================================================
-    let estratos = [];
-    const listaEstratosEl = document.getElementById('listaEstratos');
-    const btnAdd = document.getElementById('btnAddEstrato');
-    const inputNome = document.getElementById('estratoNome');
-    const inputPop = document.getElementById('estratoPop');
-
-    function renderEstratos() {
-        if (estratos.length === 0) {
-            listaEstratosEl.innerHTML = `<p class="text-muted" style="padding:12px 0;">Nenhum estrato adicionado.</p>`;
-            return;
-        }
-        let html = '';
-        estratos.forEach((e, idx) => {
-            html += `
-                <div class="estrato-item">
-                    <div class="estrato-info">
-                        <strong>${e.nome}</strong>
-                        <span>N<sub>i</sub> = ${e.pop}</span>
-                    </div>
-                    <button class="btn btn-remover" data-index="${idx}" style="padding:4px 14px; font-size:0.85rem; background:#e63946; color:white; border:none; border-radius:40px; cursor:pointer;">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </div>
-            `;
-        });
-        listaEstratosEl.innerHTML = html;
-        document.querySelectorAll('.btn-remover').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const idx = parseInt(this.dataset.index);
-                estratos.splice(idx, 1);
-                renderEstratos();
-                document.getElementById('resultados').style.display = 'none';
-            });
-        });
-    }
-
-    btnAdd.addEventListener('click', function() {
-        const nome = inputNome.value.trim();
-        const pop = parseInt(inputPop.value);
-        if (!nome) { alert('Informe o nome do estrato.'); return; }
-        if (!pop || pop < 1) { alert('Informe uma população válida (≥ 1).'); return; }
-        if (estratos.some(e => e.nome === nome)) {
-            alert('Já existe um estrato com este nome.');
-            return;
-        }
-        estratos.push({ nome, pop });
-        renderEstratos();
-        inputNome.value = '';
-        inputPop.value = '';
-        document.getElementById('resultados').style.display = 'none';
-    });
-
-    inputNome.addEventListener('keypress', (e) => { if (e.key === 'Enter') btnAdd.click(); });
-    inputPop.addEventListener('keypress', (e) => { if (e.key === 'Enter') btnAdd.click(); });
-
-    function mulberry32(a) {
-        return function() {
-            a |= 0; a = a + 0x6D2B79F5 | 0;
-            let t = Math.imul(a ^ a >>> 15, 1 | a);
-            t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-            return ((t ^ t >>> 14) >>> 0) / 4294967296;
-        };
-    }
-
-    document.getElementById('btnCalcular').addEventListener('click', function() {
-        if (estratos.length === 0) {
-            alert('Adicione pelo menos um estrato.');
-            return;
-        }
-
-        const N = estratos.reduce((s, e) => s + e.pop, 0);
-        const n0 = 384.16;
-        let n = n0 / (1 + (n0 - 1) / N);
-        n = Math.round(n);
-
-        let aloc = estratos.map(e => {
-            const raw = n * e.pop / N;
-            let arred = Math.round(raw);
-            if (arred < 1) arred = 1;
-            return { ...e, raw, arred, resto: raw - Math.floor(raw) };
-        });
-
-        let somaAtual = aloc.reduce((s, a) => s + a.arred, 0);
-        if (somaAtual > n) {
-            let dif = somaAtual - n;
-            const candidatos = aloc.map((a, idx) => ({ idx, arred: a.arred, resto: a.resto }));
-            candidatos.sort((a, b) => a.resto - b.resto);
-            for (let c of candidatos) {
-                if (dif === 0) break;
-                if (aloc[c.idx].arred > 1) {
-                    aloc[c.idx].arred -= 1;
-                    dif--;
-                }
-            }
-        } else if (somaAtual < n) {
-            let dif = n - somaAtual;
-            const candidatos = aloc.map((a, idx) => ({ idx, arred: a.arred, resto: a.resto }));
-            candidatos.sort((a, b) => b.resto - a.resto);
-            for (let c of candidatos) {
-                if (dif === 0) break;
-                aloc[c.idx].arred += 1;
-                dif--;
-            }
-        }
-        somaAtual = aloc.reduce((s, a) => s + a.arred, 0);
-        while (somaAtual < n) {
-            for (let i = 0; i < aloc.length && somaAtual < n; i++) {
-                aloc[i].arred += 1;
-                somaAtual++;
-            }
-        }
-        while (somaAtual > n) {
-            for (let i = aloc.length - 1; i >= 0 && somaAtual > n; i--) {
-                if (aloc[i].arred > 1) {
-                    aloc[i].arred -= 1;
-                    somaAtual--;
-                }
-            }
-        }
-
-        const seed = parseInt(document.getElementById('seedInput').value) || 42;
-        const rand = mulberry32(seed);
-
-        aloc.forEach(a => {
-            const p = Math.floor(a.arred * 0.8);
-            a.P = p;
-            a.Q = a.arred - p;
-        });
-
-        aloc.forEach(a => {
-            const N_i = a.pop;
-            const P = a.P;
-            if (P === 0) { a.sorteados = []; return; }
-            const K = N_i / P;
-            const r = rand() * K;
-            const posicoes = [];
-            for (let j = 1; j <= P; j++) {
-                const pos = Math.ceil(r + (j - 1) * K);
-                if (pos <= N_i) posicoes.push(pos);
-            }
-            while (posicoes.length < P) {
-                const extra = Math.floor(rand() * N_i) + 1;
-                if (!posicoes.includes(extra)) posicoes.push(extra);
-            }
-            a.sorteados = posicoes.slice(0, P);
-        });
-
-        exibirResultados(N, n, aloc, seed);
-    });
-
-    function exibirResultados(N, n, aloc, seed) {
-        const resultadosDiv = document.getElementById('resultados');
-        resultadosDiv.style.display = 'block';
-
-        const totalPreservado = aloc.reduce((s, a) => s + a.arred, 0);
-        document.getElementById('resumoGlobal').innerHTML = `
-            <strong>População total (N):</strong> ${N} &nbsp;|&nbsp;
-            <strong>n (Cochran):</strong> ${n} &nbsp;|&nbsp;
-            <strong>Estratos:</strong> ${aloc.length} &nbsp;|&nbsp;
-            <strong>Total preservado:</strong> ${totalPreservado} &nbsp;|&nbsp;
-            <strong>Seed:</strong> ${seed}
-        `;
-
-        let html = `<table>
-            <thead><tr>
-                <th>Estrato</th>
-                <th>N<sub>i</sub></th>
-                <th>n<sub>i</sub></th>
-                <th>P (prob.)</th>
-                <th>Q (qual.)</th>
-                <th>Posições sorteadas (P)</th>
-            </tr></thead><tbody>`;
-        aloc.forEach(a => {
-            const sorteadosStr = a.sorteados.length > 0 ? a.sorteados.join(', ') : '—';
-            html += `<tr>
-                <td><strong>${a.nome}</strong></td>
-                <td>${a.pop}</td>
-                <td>${a.arred}</td>
-                <td>${a.P}</td>
-                <td>${a.Q}</td>
-                <td style="font-size:0.85rem; max-width:300px; word-break:break-all;">${sorteadosStr}</td>
-            </tr>`;
-        });
-        html += `</tbody></table>`;
-        document.getElementById('tabelaAlocacao').innerHTML = html;
-
-        let detalhesHtml = `<div style="margin-top:20px;"><h4><i class="fas fa-list-ul"></i> Detalhamento dos sorteios</h4>`;
-        aloc.forEach(a => {
-            if (a.sorteados.length > 0) {
-                detalhesHtml += `<div style="background:var(--bg);padding:8px 16px;border-radius:8px;margin:8px 0;">
-                    <strong>${a.nome}</strong> (P = ${a.P}): ${a.sorteados.join(', ')}
-                </div>`;
-            }
-        });
-        detalhesHtml += `</div>`;
-        document.getElementById('detalhesSorteados').innerHTML = detalhesHtml;
-
-        window._dadosExport = { N, n, aloc, seed };
-    }
-
-    document.getElementById('btnExportCSV').addEventListener('click', function() {
-        const dados = window._dadosExport;
-        if (!dados) { alert('Nenhum resultado para exportar.'); return; }
-        let csv = 'Estrato,Ni,ni_Alocado,P,Q,Posicoes_Sorteadas\n';
-        dados.aloc.forEach(a => {
-            const sort = a.sorteados.join(';');
-            csv += `${a.nome},${a.pop},${a.arred},${a.P},${a.Q},"${sort}"\n`;
-        });
-        csv += `\nResumo,População Total,${dados.N},n (Cochran),${dados.n},Seed,${dados.seed}\n`;
-        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'amostragem_resultados.csv';
-        link.click();
-        URL.revokeObjectURL(link.href);
-    });
-
-    document.getElementById('btnRandomSeed').addEventListener('click', function() {
-        const seed = Math.floor(Math.random() * 1000000);
-        document.getElementById('seedInput').value = seed;
-    });
-
-    // Exemplos iniciais
-    const exemplos = [
-        { nome: '03.02/2019', pop: 1200 },
-        { nome: '03.02/2020', pop: 1800 },
-        { nome: '03.02/2021', pop: 2000 },
-        { nome: '03.02/2022', pop: 1500 }
-    ];
-    estratos = exemplos;
-    renderEstratos();
-    document.getElementById('seedInput').value = 42;
-</script>
-
 </body>
 </html>

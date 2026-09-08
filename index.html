@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Completo de Amostragem Documental</title>
+    <title>Manual de Amostragem Documental</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,9 +23,9 @@
             --text: #1a1a2e;
             --text-secondary: #4a4a6a;
             --border: #e2e8f0;
-            --primary: #2d6a4f;
-            --primary-light: #52b788;
-            --primary-dark: #1b4332;
+            --primary: #2563eb;
+            --primary-light: #60a5fa;
+            --primary-dark: #1e3a8a;
             --shadow: 0 8px 30px rgba(0,0,0,0.05);
             --radius: 16px;
             --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -173,8 +173,8 @@
             font-weight: 600;
             display: inline-block;
         }
-        .badge-correction {
-            background: #e63946;
+        .badge-dark {
+            background: var(--text-secondary);
         }
 
         /* === MANUAL COMPLETO (ACORDEÃO) === */
@@ -235,17 +235,6 @@
             font-size: 1.05rem;
             border-left: 4px solid var(--primary-light);
         }
-        .correction-note {
-            background: #fff6e5;
-            border-left: 4px solid #e67e22;
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin: 12px 0;
-            font-size: 0.95rem;
-        }
-        .correction-note strong {
-            color: #d35400;
-        }
         .table-wrap {
             overflow-x: auto;
             margin: 16px 0;
@@ -300,7 +289,7 @@
         .form-group input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         .form-group input[type="number"] {
             -moz-appearance: textfield;
@@ -413,7 +402,7 @@
     </nav>
 
     <!-- ============================================================ -->
-    <!-- SEÇÃO INÍCIO (mantida) -->
+    <!-- SEÇÃO INÍCIO -->
     <!-- ============================================================ -->
     <section id="section-inicio" class="section active">
         <div class="card" style="text-align: center; padding: 48px 32px;">
@@ -431,13 +420,13 @@
         </div>
         <div class="grid-2">
             <div class="card">
-                <h3><i class="fas fa-check-circle" style="color: var(--primary-light);"></i> Versão Simplificada</h3>
+                <h3><i class="fas fa-check-circle" style="color: var(--primary-light);"></i> Versão Resumida</h3>
                 <p class="text-muted">10 passos objetivos para aplicar a amostragem na rotina.</p>
                 <a href="#" class="btn" data-section="manual" style="margin-top:12px;">Acessar</a>
             </div>
             <div class="card">
-                <h3><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Versão Completa</h3>
-                <p class="text-muted">Manual integral com todas as correções estatísticas e técnicas.</p>
+                <h3><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Versão Integral</h3>
+                <p class="text-muted">Manual completo com todos os fundamentos, exemplos e formulários.</p>
                 <a href="#" class="btn" data-section="manual-completo" style="margin-top:12px;">Acessar</a>
             </div>
             <div class="card">
@@ -449,12 +438,12 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- SEÇÃO MANUAL SIMPLIFICADO (mantida da versão anterior) -->
+    <!-- SEÇÃO MANUAL SIMPLIFICADO -->
     <!-- ============================================================ -->
     <section id="section-manual" class="section">
         <div class="card">
             <h2><i class="fas fa-book" style="color: var(--primary-light);"></i> Manual Simplificado</h2>
-            <p class="text-muted">Versão 2.0 – 10 passos objetivos.</p>
+            <p class="text-muted">Versão resumida em 10 passos objetivos.</p>
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
             <div class="step"><h4>1. Delimitar e Estratificar</h4><p>Use <strong>Código + Ano</strong>. Defina a unidade documental.</p></div>
             <div class="step"><h4>2. Contar a População</h4><p>Some <em>N<sub>i</sub></em> para obter <em>N</em>. Se <em>N<sub>i</sub></em> ≤ 20, preserve integralmente.</p></div>
@@ -470,18 +459,18 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- SEÇÃO MANUAL COMPLETO (CORRIGIDO) -->
+    <!-- SEÇÃO MANUAL COMPLETO -->
     <!-- ============================================================ -->
     <section id="section-manual-completo" class="section">
         <div class="card">
             <h2><i class="fas fa-file-alt" style="color: var(--primary-light);"></i> Manual Completo</h2>
-            <p class="text-muted">Versão revisada e corrigida – Incorpora todas as sugestões da avaliação técnica.</p>
+            <p class="text-muted">Versão integral – Método de amostragem híbrida (probabilística e qualitativa) em conformidade com a legislação do SAESP.</p>
             <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;">
+                <span class="badge"><i class="fas fa-check"></i> Estratificação Código + Ano</span>
                 <span class="badge"><i class="fas fa-check"></i> Arredondamento padrão</span>
-                <span class="badge"><i class="fas fa-check"></i> Limiar unificado (N≤20)</span>
-                <span class="badge"><i class="fas fa-check"></i> Seed arbitrária</span>
+                <span class="badge"><i class="fas fa-check"></i> Seed obrigatória</span>
+                <span class="badge"><i class="fas fa-check"></i> Sistemática fracionária</span>
                 <span class="badge"><i class="fas fa-check"></i> Flexibilidade 80/20</span>
-                <span class="badge"><i class="fas fa-check"></i> K fracionário</span>
             </div>
             <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
 
@@ -490,9 +479,7 @@
                 <summary><i class="fas fa-file-signature"></i> Capítulo 1 – Apresentação e Fundamentação</summary>
                 <div class="content">
                     <p>Este manual estabelece diretrizes técnicas para amostragem arquivística em conjuntos documentais elimináveis, com base no art. 29 do Decreto 48.897/2004 e na IN APE/SAESP 3/2015.</p>
-                    <div class="correction-note">
-                        <strong><i class="fas fa-pencil-alt"></i> Correção técnica:</strong> A fórmula de Cochran é empregada como <strong>dispositivo de dimensionamento conservador</strong>, e não como estimador inferencial. A amostra tem finalidade arquivística (preservação da memória), não estatística.
-                    </div>
+                    <p>A fórmula de Cochran é empregada como <strong>dispositivo de dimensionamento conservador</strong>, e não como estimador inferencial. A amostra tem finalidade arquivística (preservação da memória), não estatística.</p>
                     <p><strong>Finalidades:</strong> testemunhal (documento típico), probatória (auditoria), memória (excepcionalidades) e conformidade (exigência legal).</p>
                 </div>
             </details>
@@ -541,10 +528,7 @@
                     <div class="formula-box">
                         posição<sub>j</sub> = ⌈ <em>r</em> + (j−1) × <em>K</em> ⌉, com <em>r</em> sorteado entre 1 e <em>K</em>
                     </div>
-                    <p><span class="badge">Vantagem</span> Gera exatamente <em>P</em> unidades, distribuídas uniformemente.</p>
-                    <div class="correction-note">
-                        <strong><i class="fas fa-pencil-alt"></i> Correção:</strong> O texto anterior recomendava truncar K. Agora o método <strong>fracionário</strong> é o padrão, evitando excessos/déficits.
-                    </div>
+                    <p><span class="badge">Vantagem</span> O método padrão é o intervalo fracionário, que gera exatamente <em>P</em> unidades, distribuídas uniformemente, evitando excessos ou déficits.</p>
                     <h4>5.3 Amostragem Estratificada</h4>
                     <p>Divisão em estratos homogêneos (Código + Ano). Alocação proporcional com <strong>piso de 1 unidade</strong> (IN APE/SAESP).</p>
                 </div>
@@ -583,9 +567,7 @@
                     <div class="formula-box">
                         n = n<sub>0</sub> / (1 + (n<sub>0</sub> − 1) / N)
                     </div>
-                    <div class="correction-note">
-                        <strong><i class="fas fa-pencil-alt"></i> Correção de arredondamento:</strong> Arredonde <em>n</em> para o <strong>inteiro mais próximo</strong> (regra 5/4). O arredondamento para cima sistemático superestima a amostra sem justificativa.
-                    </div>
+                    <p><strong>Arredondamento:</strong> Arredonde <em>n</em> para o <strong>inteiro mais próximo</strong> (regra 5/4).</p>
                     <p><span class="badge">Regra</span> Se <em>n</em> ≥ <em>N</em>, preservar toda a população (censo).</p>
                 </div>
             </details>
@@ -608,10 +590,7 @@
                     </div>
                     <div class="step">
                         <h4>Etapa 4 – Levantar N<sub>i</sub></h4>
-                        <p>Contagem física ou por inventário.</p>
-                        <div class="correction-note">
-                            <strong><i class="fas fa-pencil-alt"></i> Correção unificada:</strong> Estratos com <strong>N<sub>i</sub> ≤ 20</strong> são preservados integralmente (censo) e excluídos do cálculo estatístico.
-                        </div>
+                        <p>Contagem física ou por inventário. Estratos com <strong>N<sub>i</sub> ≤ 20</strong> são preservados integralmente (censo) e excluídos do cálculo estatístico.</p>
                     </div>
                     <div class="step">
                         <h4>Etapa 5 – Calcular n (Cochran)</h4>
@@ -625,21 +604,16 @@
                     </div>
                     <div class="step">
                         <h4>Etapa 7 – Ajuste da soma para n</h4>
-                        <p>Some os <em>n<sub>i</sub></em> arredondados.</p>
+                        <p>Some os <em>n<sub>i</sub></em> arredondados. O ajuste é realizado com base nos restos decimais, garantindo a maior proximidade proporcional.</p>
                         <ul>
                             <li><strong>Se soma > n:</strong> subtraia 1 unidade do(s) estrato(s) de <strong>menor resto decimal</strong>.</li>
                             <li><strong>Se soma < n:</strong> adicione 1 unidade ao(s) estrato(s) de <strong>maior resto decimal</strong>.</li>
                         </ul>
-                        <div class="correction-note">
-                            <strong><i class="fas fa-pencil-alt"></i> Correção:</strong> O ajuste agora é claro e baseado nos restos decimais, garantindo a maior proximidade proporcional.
-                        </div>
                     </div>
                     <div class="step">
                         <h4>Etapa 8 – Dividir em P (prob.) e Q (qual.)</h4>
                         <p><strong>Padrão:</strong> P = floor(<em>n<sub>i</sub></em> × 0,8); Q = <em>n<sub>i</sub></em> − P.</p>
-                        <div class="correction-note">
-                            <strong><i class="fas fa-pencil-alt"></i> Correção:</strong> O percentual pode variar entre <strong>70% e 90%</strong> para P, mediante justificativa registrada. A fixidez de 80% é apenas referência.
-                        </div>
+                        <p>O percentual pode variar entre <strong>70% e 90%</strong> para P, mediante justificativa registrada. A referência de 80% é o padrão.</p>
                     </div>
                     <div class="step">
                         <h4>Etapa 9 – Escolher método probabilístico</h4>
@@ -692,9 +666,7 @@
                 <summary><i class="fas fa-microchip"></i> Capítulo 10 – Recomendações Técnicas Avançadas</summary>
                 <div class="content">
                     <h4>10.1 Seed e Reprodutibilidade</h4>
-                    <div class="correction-note">
-                        <strong><i class="fas fa-pencil-alt"></i> Correção:</strong> A semente deve ser um número <strong>arbitrário</strong> (ex.: timestamp da geração) e registrada <strong>após</strong> o sorteio. <strong>Evitar</strong> seeds óbvias como 0, 1, 12345 para não levantar suspeitas de manipulação.
-                    </div>
+                    <p>A semente deve ser um número <strong>arbitrário</strong> (ex.: timestamp da geração) e registrada <strong>após</strong> o sorteio. Recomenda-se evitar seeds óbvias como 0, 1 ou 12345 para não levantar suspeitas de manipulação.</p>
                     <h4>10.2 Ordenação estável</h4>
                     <p>Definir e registrar o critério de ordenação (cronológico, numérico) antes da numeração.</p>
                     <h4>10.3 Tratamento de duplicidades</h4>
@@ -728,19 +700,19 @@
                 </div>
             </details>
 
-            <div style="margin-top: 24px; padding: 16px; background: #e8f5e9; border-radius: 12px; border: 1px solid #a5d6a7;">
-                <p style="margin: 0; color: #1b5e20;"><i class="fas fa-check-circle" style="color: #2e7d32;"></i> <strong>Manual validado:</strong> Todas as correções estatísticas e de consistência interna foram aplicadas. O método está alinhado com a IN APE/SAESP 3/2015 e com as boas práticas de amostragem arquivística.</p>
+            <div style="margin-top: 24px; padding: 16px; background: #e3f2fd; border-radius: 12px; border: 1px solid #90caf9;">
+                <p style="margin: 0; color: #0d47a1;"><i class="fas fa-check-circle" style="color: #1976d2;"></i> <strong>Manual validado:</strong> Método alinhado com a IN APE/SAESP 3/2015 e com as boas práticas de amostragem arquivística.</p>
             </div>
         </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- SEÇÃO CALCULADORA (mantida da versão anterior) -->
+    <!-- SEÇÃO CALCULADORA -->
     <!-- ============================================================ -->
     <section id="section-calculadora" class="section">
         <div class="card">
             <h2><i class="fas fa-calculator" style="color: var(--primary-light);"></i> Calculadora de Amostragem</h2>
-            <p class="text-muted">Ferramenta interativa que implementa o fluxo completo do manual corrigido.</p>
+            <p class="text-muted">Ferramenta interativa que implementa o fluxo completo do manual.</p>
 
             <div style="margin: 24px 0;">
                 <div class="form-row">
@@ -821,7 +793,7 @@
     });
 
     // ============================================================
-    // CALCULADORA (mesmo código da versão anterior, mantido)
+    // CALCULADORA
     // ============================================================
     let estratos = [];
     const listaEstratosEl = document.getElementById('listaEstratos');
@@ -842,7 +814,7 @@
                         <strong>${e.nome}</strong>
                         <span>N<sub>i</sub> = ${e.pop}</span>
                     </div>
-                    <button class="btn btn-danger btn-remover" data-index="${idx}" style="padding:4px 14px; font-size:0.85rem; background:#e63946; color:white; border:none; border-radius:40px; cursor:pointer;">
+                    <button class="btn btn-remover" data-index="${idx}" style="padding:4px 14px; font-size:0.85rem; background:#e63946; color:white; border:none; border-radius:40px; cursor:pointer;">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>

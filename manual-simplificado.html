@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Simplificado – Amostragem Documental</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --bg: #f6f8fa;
+            --surface: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-light: #60a5fa;
+            --primary-dark: #1e3a8a;
+            --shadow: 0 8px 30px rgba(0,0,0,0.05);
+            --radius: 16px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0 20px 40px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        nav {
+            padding: 24px 0 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+        .logo i { color: var(--primary-light); margin-right: 8px; }
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            padding: 8px 16px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            background: var(--surface);
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+        .nav-links a.active {
+            background: var(--primary);
+            color: white;
+        }
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            box-shadow: var(--shadow);
+            margin: 24px 0;
+            border: 1px solid var(--border);
+        }
+        .badge {
+            background: var(--primary-light);
+            color: white;
+            border-radius: 40px;
+            padding: 2px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .step {
+            margin: 16px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-light);
+        }
+        .step h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 0 0 4px;
+        }
+        .step p { margin: 4px 0; }
+        .text-muted { color: var(--text-secondary); }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            font-family: var(--font);
+        }
+        .btn:hover { background: var(--primary-dark); }
+        @media (max-width: 640px) {
+            .card { padding: 20px; }
+            .nav-links a { padding: 6px 12px; font-size: 0.8rem; }
+        }
+        footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="logo"><i class="fas fa-archive"></i> AmostragemDoc</div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Início</a>
+            <a href="manual-simplificado.html" class="active"><i class="fas fa-book"></i> Manual Simpl.</a>
+            <a href="manual-completo.html"><i class="fas fa-file-alt"></i> Manual Completo</a>
+            <a href="ferramenta.html"><i class="fas fa-calculator"></i> Calculadora</a>
+        </div>
+    </nav>
+
+    <div class="card">
+        <h2><i class="fas fa-book" style="color: var(--primary-light);"></i> Manual Simplificado</h2>
+        <p class="text-muted">Versão resumida em 10 passos objetivos.</p>
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+
+        <div class="step"><h4>1. Delimitar e Estratificar</h4><p>Use <strong>Código de Classificação + Ano de Produção</strong>. Defina a unidade documental (processo, dossiê, etc.).</p></div>
+        <div class="step"><h4>2. Contar a População</h4><p>Some <em>N<sub>i</sub></em> para obter <em>N</em>. Se <em>N<sub>i</sub></em> ≤ 20, preserve integralmente (censo) e exclua do cálculo.</p></div>
+        <div class="step"><h4>3. Calcular o Tamanho da Amostra (<em>n</em>)</h4>
+            <p><em>n<sub>0</sub></em> = 384,16 (constante para p=0,5; Z=1,96; e=0,05).</p>
+            <p><em>n</em> = <em>n<sub>0</sub></em> / (1 + (<em>n<sub>0</sub></em>−1)/<em>N</em>) &nbsp;→&nbsp; arredonde para o <strong>inteiro mais próximo</strong>.</p>
+        </div>
+        <div class="step"><h4>4. Alocar <em>n<sub>i</sub></em> entre os estratos</h4>
+            <p><em>n<sub>i</sub></em> = <em>n</em> × <em>N<sub>i</sub></em> / <em>N</em>. Arredonde cada um para o inteiro mais próximo.</p>
+            <p>Se <em>n<sub>i</sub></em> < 1, atribua <strong>1</strong> (piso mínimo – IN APE/SAESP).</p>
+            <p>Ajuste a soma para que seja exatamente igual a <em>n</em>: subtraia dos menores restos (se excesso) ou adicione aos maiores restos (se déficit).</p>
+        </div>
+        <div class="step"><h4>5. Dividir em Parcela Probabilística (P) e Qualitativa (Q)</h4>
+            <p><strong>Padrão:</strong> P = floor(<em>n<sub>i</sub></em> × 0,8); Q = <em>n<sub>i</sub></em> − P.</p>
+            <p>A proporção de P pode variar entre 70% e 90% se justificado.</p>
+        </div>
+        <div class="step"><h4>6. Selecionar a Parcela Probabilística (Sistemática Fracionária)</h4>
+            <p>Calcule <em>K</em> = <em>N<sub>i</sub></em> / <em>P</em> (sem truncar). Sorteie <em>r</em> entre 1 e <em>K</em>.</p>
+            <p>Posição<sub>j</sub> = ⌈ <em>r</em> + (j−1) × <em>K</em> ⌉ para j = 1 … P.</p>
+            <p>Use <strong>seed</strong> registrada para reprodutibilidade.</p>
+        </div>
+        <div class="step"><h4>7. Selecionar a Parcela Qualitativa (Q)</h4>
+            <p>Utilize os critérios da IN APE/SAESP (pessoas representativas, eventos, alterações de procedimentos, etc.) e justifique cada unidade.</p>
+            <p>Para séries homogêneas: priorize primeiro/último documento, mudanças de layout ou anomalias.</p>
+        </div>
+        <div class="step"><h4>8. Tratar Unidades Não Localizadas</h4>
+            <p>Substitua por novo sorteio (P) ou pela próxima unidade que atenda ao mesmo critério (Q). Registre a substituição.</p>
+        </div>
+        <div class="step"><h4>9. Registrar e Garantir Reprodutibilidade</h4>
+            <p>Registre: <strong>seed</strong> utilizada, software/versão, lista completa dos números sorteados, tabela de alocação, justificativas de Q, data e responsável.</p>
+            <p>A seed deve ser um número arbitrário (ex.: timestamp) e registrada <strong>após</strong> o sorteio. Evite 0, 1, 12345.</p>
+        </div>
+        <div class="step"><h4>10. Consolidar a Amostra Final</h4>
+            <p>A amostra final = estratos censitários (N<sub>i</sub> ≤ 20) + união das parcelas P e Q de cada estrato dimensionado.</p>
+            <p>Preencha o formulário padrão e anexe ao processo de eliminação.</p>
+        </div>
+
+        <div style="margin-top: 24px; padding: 16px; background: #e3f2fd; border-radius: 12px; border: 1px solid #90caf9;">
+            <p style="margin: 0; color: #0d47a1;"><i class="fas fa-check-circle" style="color: #1976d2;"></i> <strong>Parâmetros-chave:</strong> Estratificação Código+Ano | Arredondamento padrão | Piso=1 | Sistemática fracionária | Seed obrigatória | Flexibilidade 80/20.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Baseado no Decreto 48.897/2004 e IN APE/SAESP 3/2015 – Versão simplificada.</p>
+    </footer>
+</div>
+</body>
+</html>

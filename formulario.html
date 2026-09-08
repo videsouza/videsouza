@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Amostragem – Modelo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === RESET e VARIÁVEIS === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg: #f6f8fa;
+            --surface: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --border: #2c3e50;
+            --primary: #2563eb;
+            --primary-light: #60a5fa;
+            --primary-dark: #1e3a8a;
+            --shadow: 0 8px 30px rgba(0,0,0,0.05);
+            --radius: 16px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* === NAV (oculta na impressão) === */
+        .no-print {
+            display: block;
+        }
+        nav {
+            padding: 16px 0 12px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+        .logo i {
+            color: var(--primary-light);
+            margin-right: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            padding: 6px 14px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            background: var(--surface);
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+        .nav-links a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* === FORMULÁRIO === */
+        .form-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 32px 36px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+        }
+        .form-header {
+            text-align: center;
+            border-bottom: 3px double var(--primary);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .form-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+        .form-header h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        .form-header .badge-print {
+            background: var(--primary);
+            color: white;
+            padding: 2px 16px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 6px;
+            margin: 24px 0 16px 0;
+        }
+        .section-title i {
+            color: var(--primary-light);
+            margin-right: 8px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 24px;
+        }
+        .form-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .field label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .field .underline {
+            border-bottom: 1px solid #a0aec0;
+            padding: 4px 0 8px 0;
+            min-height: 32px;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        .field .underline-sm {
+            min-height: 24px;
+        }
+
+        /* Tabelas do formulário */
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+        .form-table th {
+            background: #edf2f7;
+            text-align: left;
+            padding: 8px 10px;
+            border: 1px solid #cbd5e0;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .form-table td {
+            padding: 8px 10px;
+            border: 1px solid #cbd5e0;
+            min-height: 30px;
+        }
+        .form-table .empty-row td {
+            height: 28px;
+        }
+        .form-table .empty-row-sm td {
+            height: 20px;
+        }
+
+        .signature-area {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 24px;
+            margin-top: 24px;
+            border-top: 2px solid var(--border);
+            padding-top: 24px;
+        }
+        .signature-area .field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .print-footer {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid #e2e8f0;
+            padding-top: 16px;
+        }
+
+        /* Botões de impressão */
+        .print-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 24px 0 12px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            font-family: var(--font);
+        }
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ============================================================ */
+        /* ESTILOS DE IMPRESSÃO */
+        /* ============================================================ */
+        @media print {
+            body {
+                background: white !important;
+                padding: 0.2in !important;
+                font-size: 11pt;
+                color: #000;
+            }
+            .container {
+                max-width: 100% !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            nav, .print-actions, .btn {
+                display: none !important;
+            }
+            .form-card {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                background: white !important;
+            }
+            .form-header {
+                border-bottom: 2px solid #000 !important;
+            }
+            .form-header h1 {
+                color: #000 !important;
+                font-size: 22pt;
+            }
+            .form-header h2 {
+                color: #333 !important;
+            }
+            .section-title {
+                color: #000 !important;
+                border-bottom: 2px solid #666 !important;
+            }
+            .section-title i {
+                color: #000 !important;
+            }
+            .field label {
+                color: #333 !important;
+            }
+            .field .underline {
+                border-bottom: 1px solid #000 !important;
+                min-height: 28px;
+                padding: 2px 0 6px 0;
+            }
+            .form-table th {
+                background: #eee !important;
+                border: 1px solid #000 !important;
+                color: #000 !important;
+            }
+            .form-table td {
+                border: 1px solid #000 !important;
+            }
+            .form-table .empty-row td {
+                height: 24px;
+            }
+            .signature-area {
+                border-top: 2px solid #000 !important;
+            }
+            .badge-print {
+                background: #000 !important;
+                color: white !important;
+            }
+            .print-footer {
+                color: #333 !important;
+                border-top: 1px solid #999 !important;
+            }
+            .form-grid {
+                gap: 8px 16px;
+            }
+            /* Evita quebras de página dentro de seções importantes */
+            .section-break {
+                page-break-inside: avoid;
+            }
+            .form-table {
+                page-break-inside: auto;
+            }
+            .form-table tr {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-card {
+                padding: 16px;
+            }
+            .form-header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- NAV (visível apenas na tela) -->
+    <nav class="no-print">
+        <div class="logo"><i class="fas fa-archive"></i> AmostragemDoc</div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Início</a>
+            <a href="manual-simplificado.html"><i class="fas fa-book"></i> Manual Simpl.</a>
+            <a href="manual-completo.html"><i class="fas fa-file-alt"></i> Manual Completo</a>
+            <a href="ferramenta.html"><i class="fas fa-calculator"></i> Calculadora</a>
+            <a href="formulario.html" class="active"><i class="fas fa-file-pdf"></i> Formulário</a>
+        </div>
+    </nav>
+
+    <!-- FORMULÁRIO -->
+    <div class="form-card">
+        <div class="form-header">
+            <h1>FORMULÁRIO DE REGISTRO DE AMOSTRAGEM</h1>
+            <h2>Apêndice A – Manual de Amostragem Documental (Versão 2.0)</h2>
+            <span class="badge-print"><i class="fas fa-print"></i> Modelo para impressão</span>
+        </div>
+
+        <!-- BOTÕES DE IMPRESSÃO (apenas tela) -->
+        <div class="print-actions no-print">
+            <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir / PDF</button>
+            <button class="btn btn-outline" onclick="window.close()"><i class="fas fa-times"></i> Fechar</button>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SEÇÃO 1: DADOS GERAIS -->
+        <!-- ============================================================ -->
+        <div class="section-title"><i class="fas fa-folder-open"></i> 1. Dados Gerais do Conjunto Documental</div>
+        <div class="form-grid">
+            <div class="field">
+                <label>1. Órgão / Secretaria</label>
+                <div class="underline">_________________________________________________</div>
+            </div>
+            <div class="field">
+                <label>2. Série documental</label>
+                <div class="underline">_________________________________________________</div>
+            </div>
+            <div class="field">
+                <label>3. Código de classificação</label>
+                <div class="underline">_________________________________________________</div>
+            </div>
+            <div class="field">
+                <label>4. Período abrangido</label>
+                <div class="underline">_________________________________________________</div>
+            </div>
+            <div class="field full-width">
+                <label>5. Unidade documental definida (ex.: processo, dossiê, prontuário)</label>
+                <div class="underline">_________________________________________________</div>
+            </div>
+            <div class="field full-width">
+                <label>6. Critério(s) de estratificação adotado(s) (ex.: Código + Ano, Setor)</label>
+                <div class="underline">_________________________________________________</div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SEÇÃO 2: DIMENSIONAMENTO -->
+        <!-- ============================================================ -->
+        <div class="section-title"><i class="fas fa-calculator"></i> 2. Dimensionamento da Amostra</div>
+        <div class="form-grid">
+            <div class="field">
+                <label>7. População total (N)</label>
+                <div class="underline">_________________</div>
+            </div>
+            <div class="field">
+                <label>8. Amostra total (n) — fórmula de Cochran</label>
+                <div class="underline">_________________</div>
+            </div>
+            <div class="field full-width">
+                <label>9a. Proporção adotada (P / Q) <span style="font-weight:400; color:#666;">(Padrão: 80% / 20%)</span></label>
+                <div class="underline">________ % probabilística (P) &nbsp;&nbsp;/&nbsp;&nbsp; ________ % qualitativa (Q)</div>
+            </div>
+            <div class="field full-width">
+                <label>9b. Modalidade de amostragem</label>
+                <div class="underline">☐ Global com alocação proporcional &nbsp;&nbsp; ☐ Autônoma por código (justificar: _________________________________)</div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SEÇÃO 3: TABELA DE ESTRATOS E ALOCAÇÃO -->
+        <!-- ============================================================ -->
+        <div class="section-title"><i class="fas fa-layer-group"></i> 3. Estratificação e Alocação (preencher para cada estrato)</div>
+        <table class="form-table">
+            <thead>
+                <tr>
+                    <th style="width:25%;">Estrato (ex.: 03.02/2020)</th>
+                    <th style="width:15%;">N<sub>i</sub></th>
+                    <th style="width:15%;">n<sub>i</sub> alocado</th>
+                    <th style="width:15%;">P (prob.)</th>
+                    <th style="width:15%;">Q (qual.)</th>
+                    <th style="width:15%;">Obs.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                <tr style="font-weight:600; background:#f8fafc;">
+                    <td><strong>TOTAL</strong></td>
+                    <td>________</td>
+                    <td>________</td>
+                    <td>________</td>
+                    <td>________</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ============================================================ -->
+        <!-- SEÇÃO 4: METODOLOGIA E REPRODUTIBILIDADE -->
+        <!-- ============================================================ -->
+        <div class="section-title"><i class="fas fa-dice"></i> 4. Metodologia Probabilística e Reprodutibilidade</div>
+        <div class="form-grid">
+            <div class="field full-width">
+                <label>9. Método probabilístico interno</label>
+                <div class="underline">☐ Amostragem Aleatória Simples (AAS) &nbsp;&nbsp; ☐ Sistemática (K fracionário) &nbsp;&nbsp; ☐ Sistemática (K truncado – fallback)</div>
+                <div class="underline" style="margin-top:6px;">Justificativa: _________________________________________________________________</div>
+            </div>
+            <div class="field">
+                <label>10. Semente (Seed) utilizada</label>
+                <div class="underline">_________________</div>
+            </div>
+            <div class="field">
+                <label>Software / Versão</label>
+                <div class="underline">_________________</div>
+            </div>
+            <div class="field full-width">
+                <label>Observações sobre a ordenação da lista (critério adotado)</label>
+                <div class="underline">_________________________________________________________________</div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SEÇÃO 5: LISTA DE SORTEADOS (PROBABILÍSTICA) -->
+        <!-- ============================================================ -->
+        <div class="section-title"><i class="fas fa-list-ul"></i> 5. Parcela Probabilística – Números sorteados (P)</div>
+        <div class="field full-width">
+            <label>11. Lista dos números sorteados (por estrato)</label>
+            <div class="underline" style="min-height:60px;">
+                Estrato __________: _________________________________________________________________<br>
+                Estrato __________: _________________________________________________________________<br>
+                Estrato __________: _________________________________________________________________<br>
+                Estrato __________: _________________________________________________________________<br>
+                (Caso a lista seja extensa, anexar planilha complementar e indicar aqui: _________________)
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SEÇÃO 6: PARCELA QUALITATIVA -->
+        <!-- ============================================================ -->
+        <div class="section-title"><i class="fas fa-star"></i> 6. Parcela Qualitativa – Justificativa (Q)</div>
+        <div class="field full-width">
+            <label>12. Identificação das unidades selecionadas</label>
+            <div class="underline" style="min-height:40px;">_________________________________________________________________</div>
+        </div>
+        <div class="field full-width">
+            <label>13. Justificativa individual de cada unidade (critérios IN APE/SAESP ou equivalentes)</label>
+            <table class="form-table">
+                <thead>
+                    <tr><th style="width:30%;">Unidade (identificação)</th><th style="width:70%;">Justificativa (critério aplicado)</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr class="empty-row"><td>&nbsp;</td><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SEÇÃO 7: EXCEÇÕES E TRATAMENTOS -->
+        <!-- ============================================================ -->
+        <div class="section-title"><i class="fas fa-exclamation-triangle"></i> 7. Exceções, Substituições e Estratos Especiais</div>
+        <div class="field full-width">
+            <label>14. Registro de substituições (unidade não localizada / danificada)</label>
+            <table class="form-table">
+                <thead>
+                    <tr><th style="width:20%;">Unidade original</th><th style="width:25%;">Motivo</th><th style="width:25%;">Unidade substituta</th><th style="width:30%;">Data / Obs.</th></tr>
+                </thead>
+                <tbody>
+                    <tr class="empty-row-sm"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr class="empty-row-sm"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                    <tr class="empty-row-sm"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="field full-width">
+            <label>15. Decisões sobre estratos de pequena dimensão (N<sub>i</sub> ≤ 20 ou n<sub>i</sub> < 5)</label>
+            <div class="underline" style="min-height:40px;">
+                _________________________________________________________________<br>
+                _________________________________________________________________
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SEÇÃO 8: RESPONSÁVEL E DATA -->
+        <!-- ============================================================ -->
+        <div class="signature-area">
+            <div class="field">
+                <label>16. Data da seleção</label>
+                <div class="underline">____ / ____ / ________</div>
+            </div>
+            <div class="field">
+                <label>17. Responsável técnico</label>
+                <div class="underline">Nome: _____________________________</div>
+                <div class="underline" style="margin-top:4px;">Cargo: _____________________________</div>
+                <div class="underline" style="margin-top:4px;">Assinatura: _________________________</div>
+            </div>
+            <div class="field">
+                <label>CI / Matrícula (opcional)</label>
+                <div class="underline">_____________________________</div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- RODAPÉ -->
+        <!-- ============================================================ -->
+        <div class="print-footer">
+            <p>Documento integrante do processo de eliminação — Guarda permanente (Decreto 48.897/2004 e IN APE/SAESP 3/2015).</p>
+            <p style="font-size:0.75rem; margin-top:4px;">Formulário gerado pelo Manual de Amostragem Documental — Versão 2.0</p>
+        </div>
+
+        <!-- Botão de impressão no rodapé (apenas tela) -->
+        <div style="text-align:center; margin-top:20px;" class="no-print">
+            <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Imprimir / Salvar como PDF</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
